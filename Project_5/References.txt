@@ -1,0 +1,466 @@
+These were my references used in this project:
+
+
+
+How can I replace all the NaN values with Zero's in a column of a pandas dataframe
+http://stackoverflow.com/questions/13295735/how-can-i-replace-all-the-nan-values-with-zeros-in-a-column-of-a-pandas-datafra
+
+
+I believe DataFrame.fillna() will do this for you.
+
+df.fillna(0)
+
+
+
+Attempt to infer better dtype for object columns
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.convert_objects.html
+
+
+
+python pandas/numpy True/False to 1/0 mapping
+http://stackoverflow.com/questions/17383094/python-pandas-numpy-true-false-to-1-0-mapping
+
+
+	* You also can do this directly on Frames
+
+
+df.astype(int)
+
+
+pandas iloc vs ix vs loc explanation?
+http://stackoverflow.com/questions/31593201/pandas-iloc-vs-ix-vs-loc-explanation
+
+
+First, a recap:
+
+	* loc works on labels in the index.
+	* iloc works on the positions in the index (so it only takes integers).
+	* ix usually tries to behave like loc but falls back to behaving like iloc if the label is not in the index.
+
+It's important to note some subtleties that can make ix slightly tricky to use:
+
+	* if the index is of integer type, ix will only use label-based indexing and not fall back to position-based indexing. If the label is not in the index, an error is raised.
+
+	* 
+if the index does not contain only integers, then given an integer, ix will immediately use position-based indexing rather than label-based indexing. If however ix is given another type (e.g. a string), it can use label-based indexing.
+
+
+
+
+How to change the order of DataFrame columns?
+http://stackoverflow.com/questions/13148429/how-to-change-the-order-of-dataframe-columns
+
+
+
+
+Python converts long number to float I believe ( example: x.xxxe+yy)
+http://stackoverflow.com/questions/16362093/python-converts-long-number-to-float-i-believe-example-x-xxxeyy
+
+
+Current Features and DF Ordering:  ( 21 Attributes )
+
+ 1  'bonus',
+ 2  'deferral_payments',
+ 3  'deferred_income',
+ 4  'director_fees',
+ 5  'email_address',
+ 6  'exercised_stock_options',
+ 7  'expenses',
+ 8  'from_messages',
+ 9  'from_poi_to_this_person',
+ 10 'from_this_person_to_poi',
+ 11 'loan_advances',
+ 12 'long_term_incentive',
+ 13 'other',
+ 14 'restricted_stock',
+ 15 'restricted_stock_deferred',
+ 16 'salary',
+ 17 'shared_receipt_with_poi',
+ 18 'to_messages',
+ 19 'total_payments',
+ 20 'total_stock_value',
+
+ 21 'poi'
+
+
+SelectKBest Scores:
+
+SCORES:
+[  4.020e+06   4.081e+06   3.351e+06   3.988e+05   1.552e+00   3.829e+07
+   3.432e+04   8.945e+02   7.686e+02   6.440e+02   2.040e+08   5.930e+05
+   1.660e+06   1.886e+06   3.938e+06   7.555e+02   1.426e+04   7.286e+03
+   5.991e+07   3.868e+07]
+
+
+1,2,3,4,6,11,12,13,14,15,19,20
+
+
+
+FEATURE Selection - Eyeballing it: ( Top 13 ) - Not Computer Selected
+
+[
+ 'bonus',
+ 'deferral_payments',
+ 'deferred_income',
+ 'exercised_stock_options',
+ 'from_poi_to_this_person',
+ 'from_this_person_to_poi',
+ 'loan_advances',
+ 'long_term_incentive',
+ 'other',
+ 'restricted_stock',
+ 'salary',
+ 'total_payments',
+ 'total_stock_value'
+]
+
+
+
+
+
+
+'bonus', 'deferral_payments', 'deferred_income', 'director_fees','exercised_stock_options','loan_advances','long_term_incentive',
+ 'other','restricted_stock','restricted_stock_deferred','total_payments','total_stock_value',
+
+
+DF Appending:
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.append.html
+
+
+
+Feature Engineering - Composite Features
+
+PAID:
+
+total_payments
+
+	*     salary
+	*     bonus
+	*     loan_advances
+	*     other
+
+
+
+WORTH:
+
+total_stock_value
+
+	*     exercised_stock_options
+	*     restricted_stock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8 Tactics to Combat Imbalanced Classes in Your Machine Learning Dataset
+http://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/
+
+
+
+Accuracy Paradox:
+https://en.wikipedia.org/wiki/Accuracy_paradox
+
+
+Classification Accuracy is Not Enough: More Performance Measures You Can Use
+http://machinelearningmastery.com/classification-accuracy-is-not-enough-more-performance-measures-you-can-use/
+
+
+From that post, I recommend looking at the following performance measures that can give more insight into the accuracy of the model than traditional classification accuracy:
+
+	* Confusion Matrix: A breakdown of predictions into a table showing correct predictions (the diagonal) and the types of incorrect predictions made (what classes incorrect predictions were assigned).
+	* Precision: A measure of a classifiers exactness.
+	* Recall: A measure of a classifiers completeness
+	* F1 Score (or F-score): A weighted average of precision and recall.
+
+
+
+Assessing and Comparing Classifier Performance with ROC Curves
+http://machinelearningmastery.com/assessing-comparing-classifier-performance-roc-curves-2/
+
+
+
+Oversampling and undersampling in data analysis
+https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis
+
+
+
+
+
+	*  decision trees often perform well on imbalanced datasets
+
+
+
+For an example of using CART in Python and scikit-learn, see my post titled
+“Get Your Hands Dirty With Scikit-Learn Now“.
+
+
+
+	* penalized-SVM and penalized-LDA
+
+
+
+
+Quora 
+“In classification, how do you handle an unbalanced training set?”
+
+
+Reddit Post:
+“Classification when 80% of my training set is of one class“.
+
+
+
+	* You can use some expert heuristics to pick this method or that, but in the end, the best advice I can give you is to “become the scientist” and empirically test each method and select the one that gives you the best results.
+
+
+
+
+Resources:
+
+Books
+	* Imbalanced Learning: Foundations, Algorithms, and Applications
+
+Papers
+	* Data Mining for Imbalanced Datasets: An Overview
+	* Learning from Imbalanced Data
+	* Addressing the Curse of Imbalanced Training Sets: One-Sided Selection (PDF)
+	* A Study of the Behavior of Several Methods for Balancing Machine Learning Training Data
+
+
+
+
+NOTE:
+
+Lecture Notes - Evaluation Note
+
+
+	* There’s usually a tradeoff between precision and recall--which one do you think is more important in your POI identifier? There’s no right or wrong answer, there are good arguments either way, but you should be able to interpret both metrics and articulate which one you find most important and why.
+
+
+
+
+
+
+How to Identify Outliers in your Data
+http://machinelearningmastery.com/how-to-identify-outliers-in-your-data/
+
+
+Get StartedThere are many methods and much research put into outlier detection. Start by making some assumptions and design experiments where you can clearly observe the effects of the those assumptions against some performance or accuracy measure.
+I recommend working through a stepped process from extreme value analysis, proximity methods and projection methods.
+Extreme Value AnalysisYou do not need to know advanced statistical methods to look for, analyze and filter out outliers from your data. Start out simple with extreme value analysis.
+
+	* Focus on univariate methods
+	* Visualize the data using scatterplots, histograms and box and whisker plots and look for extreme values
+	* Assume a distribution (Gaussian) and look for values more than 2 or 3 standard deviations from the mean or 1.5 times from the first or third quartile
+	* Filter out outliers candidate from training dataset and assess your models performance
+
+
+Proximity MethodsOnce you have explore simpler extreme value methods, consider moving onto proximity-based methods.
+
+	* Use clustering methods to identify the natural clusters in the data (such as the k-means algorithm)
+	* Identify and mark the cluster centroids
+	* Identify data instances that are a fixed distance or percentage distance from cluster centroids
+	* Filter out outliers candidate from training dataset and assess your models performance
+
+Projection MethodsProjection methods are relatively simple to apply and quickly highlight extraneous values.
+
+	* Use projection methods to summarize your data to two dimensions (such as PCA, SOM or Sammon’s mapping)
+	* Visualize the mapping and identify outliers by hand
+	* Use proximity measures from projected values or codebook vectors to identify outliers
+	* Filter out outliers candidate from training dataset and assess your models performance
+
+Methods Robust to OutliersAn alternative strategy is to move to models that are robust to outliers. There are robust forms of regression that minimize the median least square errors rather than mean (so-called robust regression), but are more computationally intensive. There are also methods like decision trees that are robust to outliers.
+You could spot check some methods that are robust to outliers. If there are significant model accuracy benefits then there may be an opportunity to model and filter out outliers from your training data.
+
+
+
+
+
+Pandas Scatter Plots with Dataframes
+http://stackoverflow.com/questions/14300137/making-matplotlib-scatter-plots-from-dataframes-in-pythons-pandas
+
+
+
+
+Best Practices in Feature Engineering:
+https://www.quora.com/MLconf-2015-Seattle-What-are-some-best-practices-in-Feature-Engineering-1
+
+
+This is an extremely important and extremely open-ended question.
+
+The list below is by no means complete, but I hope it provides a good enough starting point.
+
+
+Understand the data.
+Feature engineering is an art. Understanding where do the features come from helps a lot.
+
+Key questions:
+
+
+	* Are the features continuous, discrete or none of the above?
+
+
+	* What is the distribution of this feature?
+
+
+	* Does the distribution largely depend on what subset of examples is being considered?
+Time-based segmentation?
+Type-based segmentation?
+
+
+	* Does this feature contain holes (missing values)?
+Are those holes possible to be filled, or would they stay forever?
+If it possible to eliminate them in the future data?
+
+
+	* Are there duplicate and/or intersecting examples?
+Answering this question right is extremely important, since duplicate or connected data points might significantly affect the results of model validation if not properly excluded.
+
+
+	* Where do the features come from?
+Should we come up with the new features that prove to be useful, how hard would it be to incorporate those features in the final design?
+
+
+	* Is the data real-time?
+Are the requests real-time?
+
+If yes, well-engineered simple features would likely rock.
+If no, we likely are in the business of advanced models and algorithms.
+
+
+	* Are there features that can be used as the "truth"?
+
+If the problems to be solved would be of the supervised learning type, are there features that can be used as golden measures to be predicted?
+
+Prices?
+Yes/no decisions that have been recorded?
+Recommendations followed or not followed?
+
+
+Brainstorm and come up with as many diverse ideas as possible.
+The best features are the ones that:
+
+
+	* Can be intuitively explained.
+	* Are always or almost always possible to compute, and
+	* Either define some way of looking at the data extremely well or connect multiple ways of looking at the data extremely well.
+
+
+Examples:
+
+
+	* "Did the user register for the site?" is a good yes/no feature.
+	* "How much time did the user spend on the site in the past week?" is a good continuous feature.
+	* "How much time did the user spend on the site compared to the histogram of how much time did registered users spend on the site?" is a good feature combining both yes/no registration decision and continuous "time on the site" metric.
+
+
+Always validate your guesses.
+If there is the truth to predict, start building toy models from day one and establish a procedure to validate new models.
+
+It would likely involve heavy Cross-validation (statistics) and resampling. Make sure you split the data into train and validation/test sets properly, so that potentially duplicate or similar examples are separated.
+
+Make sure the model validation process is trustworthy.
+
+Test it against some random features and/or random models to ensure that once your process detects a trustworthy model, you can trust in it.
+
+Think back from the objective.
+The end goal is rarely "look at this data and tell us what do you think of it".
+
+Virtually always, one has some end goal in mind.
+
+The goal might be estimating or predicting some parameter (Supervised learning, classification, regression), or it might be understanding the grouping and anomalies in the data (Unsupervised learning, clustering).
+
+Often times, the end goal might give a hint on the cost functions that fit the problem best. This, in its turn, allows for better guesses on what types of models would perform best, even before the modeling has been started.
+
+Keep RFMVT in mind.
+RFMVT stands for:
+
+
+	* Recency. Signals how old certain event is.
+	* Frequency. Signals how often does certain events occur.
+	* Monetary. Any numerical representation of direct of indirect business value of an example.
+	* Variety. How many distinct items are found for certain type of an example.
+	* Tenure. How much time has elapsed since the first appearance of certain example or of an example of certain type.
+
+
+
+Don't overengineer.
+The temptation is almost always high to build a big thing that can automatically assess how well certain feature, or type of features, can perform.
+
+In the real life, during feature engineering phase, it does not make that much of a difference whether an iteration takes a few minutes or half a day.
+
+The most productive time during the feature engineering phase is spent at the whiteboard. The most productive way to make sure it is done right is to ask the right questions about the data.
+
+Seen in this light, feature engineering might well be the most academic and the most scientific part of what is called Big Data nowadays. There is no room for hacking; but there is no room for overengineering either.
+
+Use the right tools for the right tasks.
+
+
+
+
+Feature Engineering: (Awesome Article)
+http://machinelearningmastery.com/discover-feature-engineering-how-to-engineer-features-and-how-to-get-good-at-it/
+
+
+
+
+
+KAGGLE Ensemble Giude:
+http://mlwave.com/kaggle-ensembling-guide/
+
+
+
+
+
+DataFrame to Dictionary:
+http://stackoverflow.com/questions/18695605/python-pandas-dataframe-to-dictionary
+http://stackoverflow.com/questions/26716616/convert-pandas-dataframe-to-dictionary
+
+Docs:
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_dict.html
+
+
+
+
+
+Accuracy Parameters:
+http://machinelearningmastery.com/classification-accuracy-is-not-enough-more-performance-measures-you-can-use/
+
+
+
+PIPELINES:
+http://scikit-learn.org/stable/modules/pipeline.html
+
+
+
+
+Scatter plots in Pandas/Pyplot: How to plot by category
+http://stackoverflow.com/questions/21654635/scatter-plots-in-pandas-pyplot-how-to-plot-by-category
+
+
+
+Ultimate resource for understanding & creating data visualization
+http://www.analyticsvidhya.com/blog/2015/05/data-visualization-resource/
+
+
+Pandas - dropping columns
+http://stackoverflow.com/questions/13411544/delete-column-from-pandas-dataframe
+
+
+
+
+Printing Tables in iPython:
+http://melissagymrek.com/python/2014/01/12/ipython-tables.html
+
