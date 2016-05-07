@@ -25,10 +25,10 @@ aS'total_payments'
 p12
 aS'total_stock_value'
 p13
-aS'ratio_to'
+aS'deferral_payments'
 p14
-aS'ratio_from'
+aS'director_fees'
 p15
-aS'big_shot'
+aS'shared_receipt_with_poi'
 p16
 a.

@@ -42,11 +42,11 @@ from tester import dump_classifier_and_data
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 
-# These 13 Features come from External Experiments (See SelectKBest in Experiments File for Details):
+# These 15 Features come from External Experiments (See SelectKBest in Experiments File for Details):
 #
 features_list = ['poi','bonus', 'deferred_income','exercised_stock_options', 'expenses','loan_advances',
                  'long_term_incentive','other','restricted_stock','restricted_stock_deferred','salary',
-                 'total_payments','total_stock_value','ratio_to','ratio_from','big_shot'] 
+                 'total_payments','total_stock_value', 'deferral_payments', 'director_fees', 'shared_receipt_with_poi'] 
 
 ### Load the dictionary containing the dataset
 with open("final_project_dataset.pkl", "r") as data_file:
@@ -185,9 +185,10 @@ over_sampled_df = temp_mydataset.append(MyPoiDF)
 
 # Create a dataset from a feature reduced columns (per KBest feature picking process + Tweeks) : 16 Total
 
-mydataset_os_fr = over_sampled_df[['bonus','deferred_income','exercised_stock_options','expenses','loan_advances',
-                          'long_term_incentive','other','restricted_stock','restricted_stock_deferred','salary',
-                          'total_payments','total_stock_value','ratio_to','ratio_from','big_shot','poi']]
+mydataset_os_fr = over_sampled_df[['bonus','deferral_payments','deferred_income','director_fees',
+                                   'exercised_stock_options','expenses','loan_advances','long_term_incentive',
+                                   'other','restricted_stock','restricted_stock_deferred','salary',
+                                   'shared_receipt_with_poi','total_payments','total_stock_value','poi']]
 
 # Split-out validation dataset 
 array = mydataset_os_fr.values
