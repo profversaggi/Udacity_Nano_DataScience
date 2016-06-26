@@ -1,0 +1,578 @@
+Project References List
+
+
+
+
+DATASET RESOURCES:
+Main Dataset: http://sites.duke.edu/icbdata/
+
+Precursor link:
+http://libguides.gatech.edu/intlsecurity/statsdata
+
+
+Data Viewer:
+http://www.cidcm.umd.edu/icb/dataviewer/
+
+
+NOTE: How to sharer data with a Statistician:
+https://github.com/jtleek/datasharing
+
+
+
+
+LINKS Repository:
+https://nycopendata.socrata.com/data
+
+http://www.kdnuggets.com/datasets/index.html
+http://longisland.legalexaminer.com/automobile-accidents/car-accident-statistics/
+
+https://github.com/caesar0301/awesome-public-datasets
+
+
+http://blog.mortardata.com/post/67652898761/6-dataset-lists-curated-by-data-scientists
+
+
+http://infoguides.gmu.edu/c.php?g=120989&p=786064
+
+https://www.prio.org/JPR/Datasets/
+
+Resources:
+http://reliefweb.int/report/world/beginners-guide-conflict-data-finding-and-using-right-dataset
+https://www.prio.org/JPR/Datasets/
+
+
+
+SIPRI Arms Transfers Database
+http://www.sipri.org/databases/armstransfers
+
+
+Data sets you can use with R
+http://blog.revolutionanalytics.com/2013/08/big-data-sets-for-r.html
+
+
+UCI Machine Learning Repository
+http://archive.ics.uci.edu/ml/
+
+
+
+Global FirePower Dataset:
+https://knoema.com/GFP2015/global-firepower-2015
+
+
+
+
+
+
+
+R Stuff:
+
+How do I Clear Environment using an R command in the console?
+https://support.rstudio.com/hc/en-us/community/posts/202657367-How-do-I-Clear-Environment-using-an-R-command-in-the-console-https://support.rstudio.com/hc/en-us/community/posts/202657367-How-do-I-Clear-Environment-using-an-R-command-in-the-console-
+
+
+rm(list=ls())
+
+
+Check ?rm for more details (if e.g. you want to clear an environment other than the current one).
+
+
+
+Exclude zero values from a ggplot barplot?
+http://stackoverflow.com/questions/17896266/exclude-zero-values-from-a-ggplot-barplot
+
+
+
+
+Customizing legend labels
+http://stackoverflow.com/questions/22777245/how-to-add-custom-labels-from-a-dataset-on-top-of-bars-using-ggplot-geom-bar-in
+
+
+Excellent Blog Posting:
+http://brazenly.blogspot.com/2014/04/r-playing-with-legends-of-graph-using.html
+
+
+Solution found here:
+http://stackoverflow.com/questions/22777245/how-to-add-custom-labels-from-a-dataset-on-top-of-bars-using-ggplot-geom-bar-in
+
+
+
+Some useful R Commands:
+
+> rm(list=ls())
+> setwd("C:/Users/Matthew/workspaces/udacity/nano/data_science/DataAnalysisWith_R/Project_4")
+
+
+
+
+
+
+
+
+LINKS
+
+
+
+
+
+
+A Comprehensive guide to Data Exploration
+http://www.analyticsvidhya.com/blog/2016/01/guide-data-exploration/
+
+A Complete Tutorial on Time Series Modeling in R
+http://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/
+
+10 Questions R Users always ask while using ggplot2 package
+http://www.analyticsvidhya.com/blog/2016/03/questions-ggplot2-package-r/
+
+
+Comprehensive guide to visualizations in R
+http://www.analyticsvidhya.com/blog/2015/07/guide-data-visualization-r/
+
+
+Better Understand Your Data in R Using Visualization (10 recipes you can use today)
+http://machinelearningmastery.com/data-visualization-in-r/
+
+
+
+	* Univariate plots are plots of individual attributes without interactions. The goal is learn something about the distribution, central tendency and spread of each attributes. In datasets that have categorical rather than numeric attributes, we can create barplots that given an idea of the proportion of instances that belong to each category.
+	* Multivariate plots are plots of the relationship or interactions between attributes. The goal is to learn something about the distribution, central tendency and spread over groups of data, typically pairs of attributes.
+
+
+
+
+
+Analysis of categorical data:
+http://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html
+
+
+Regression on categorical variables:
+http://www.r-bloggers.com/regression-on-categorical-variables/
+
+
+Categorical to continuous? NO! 
+http://stats.stackexchange.com/questions/539/does-it-ever-make-sense-to-treat-categorical-data-as-continuous
+
+
+EDS Blog:
+https://exploredata.wordpress.com/
+
+
+More EDA:
+http://www.r-bloggers.com/exploratory-data-analysis-useful-r-functions-for-exploring-a-data-frame/
+
+
+
+
+
+
+
+Bar Plot Links:
+
+
+http://www.r-bloggers.com/ggplot2-cheatsheet-for-barplots/
+http://stackoverflow.com/questions/11653268/adding-labels-to-ggplot-bar-chart
+http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
+http://stackoverflow.com/questions/24094281/add-custom-labels-to-bars-in-ggplot-stacked-bar-graph-with-multiple-variables
+http://stackoverflow.com/questions/22777245/how-to-add-custom-labels-from-a-dataset-on-top-of-bars-using-ggplot-geom-bar-in
+http://brazenly.blogspot.com/2014/04/r-playing-with-legends-of-graph-using.html
+
+
+
+Time Series
+
+
+https://media.readthedocs.org/pdf/a-little-book-of-r-for-time-series/latest/a-little-book-of-r-for-time-series.pdf
+http://www.r-bloggers.com/plotting-time-series-data-using-ggplot2/
+
+
+
+Categorical data and plots
+http://www.uni-kiel.de/psychologie/rexrepos/posts/diagCategorical.html
+
+http://stats.stackexchange.com/questions/148554/how-can-you-visualize-the-relationship-between-3-categorical-variables
+
+Bar plots
+http://joey711.github.io/phyloseq/plot_bar-examples
+
+
+Showing Data values on stacked bar charts
+http://stackoverflow.com/questions/6644997/showing-data-values-on-stacked-bar-chart-in-ggplot2
+http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
+
+
+
+How should I deal with “package 'xxx' is not available (for R version x.y.z)” warning?
+http://stackoverflow.com/questions/25721884/how-should-i-deal-with-package-xxx-is-not-available-for-r-version-x-y-z-wa
+
+
+
+
+GGMAP Links
+
+https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf
+
+http://www.milanor.net/blog/maps-in-r-introduction-drawing-the-map-of-europe/
+
+http://www.briansarnacki.com/n00bs-guide-to-mapping-in-r/
+
+http://dyerlab.bio.vcu.edu/2016/01/17/a-quick-ggmap-tutorial/
+
+
+http://web.stanford.edu/~imalone/VAM/ggmap.html
+
+
+http://gis.stackexchange.com/questions/48828/how-to-make-beautiful-maps-in-r
+
+
+WORLD MAP (good source of inspiration)
+http://robinlovelace.net/2014/06/22/great-circles-in-rworldmap-ggplot2.html
+
+World Map Tutorial
+http://rpsychologist.com/working-with-shapefiles-projections-and-world-maps-in-ggplot
+
+#1: Plotting clear maps w/R
+http://sarahleejane.github.io/learning/r/2014/09/20/plotting-beautiful-clear-maps-with-r.html
+
+
+#2: Making different size circles on a world plot
+https://sarahleejane.github.io/learning/r/2014/09/21/plotting-data-points-on-maps-with-r.html
+
+
+
+Excellent Tutorial:
+http://www.londonr.org/presentations/2013/12/LondonR_-_Beautiful_world_maps_in_R_-_Andy_South_-_20131203.pdf
+
+
+
+Different types of graphs:
+http://shinyapps.org/apps/RGraphCompendium/index.php
+
+
+
+Adding a column to an R Dataframe
+http://stackoverflow.com/questions/10150579/adding-a-column-to-a-data-frame
+
+
+Copying multiple columns from one DF to another
+http://stackoverflow.com/questions/19201209/copying-multiple-columns-from-one-data-frame-to-another
+
+
+
+Network Graphs tutorial:
+https://rpubs.com/kateto/netviz
+
+GitHub:
+https://github.com/kateto/R-Network-Visualization-Workshop
+
+
+Comprehensive R Graph tutorial (Very Good)
+http://kateto.net/networks-r-igraph
+
+
+
+
+Dataframe Operations:
+https://www.datacamp.com/community/tutorials/15-easy-solutions-data-frame-problems-r
+
+
+
+
+
+
+Theory Papers on Crises & conflict resolutions:
+
+
+https://www.polity.co.uk/ccr/contents/chapters/1.pdf
+
+https://ecpr.eu/Filestore/PaperProposal/802a0f25-60ef-414a-a745-e6622ad0aea8.pdf
+
+https://www.usnwc.edu/getattachment/38806581-2ca0-4247-882a-066bf9b2fd01/The-Evolution-of-Interstate-Security-Crisis-Manage.aspx
+
+
+
+Toolbox:
+https://rpubs.com/hadley/ggplot2-toolbox
+
+
+11 ways to visualize change over time
+http://flowingdata.com/2010/01/07/11-ways-to-visualize-changes-over-time-a-guide/
+
+
+Visualizing Categorical Data:
+http://www.statmethods.net/advgraphs/mosaic.html
+
+
+Categorical Data Visualizations
+http://www.uni-kiel.de/psychologie/rexrepos/posts/diagCategorical.html
+
+
+
+
+
+books list:
+https://advanceddataanalytics.net/books/
+
+
+
+The Major Wars and Conflicts of the 20th Century
+
+1898-1901 Boxer Rebellion
+1899-1902 Boer War
+1904-1905 Russo-Japanese War
+1910-1920 Mexican Revolution
+1912-1913 First and Second Balkan Wars
+1914-1918 World War I
+1915-1918 Armenian Genocide
+1917 Russian Revolution
+1918-1921 Russian Civil War
+1919-1921 Irish War of Independence
+1927-1937 Chinese Civil War
+1933-1945 Holocaust
+1935-1936 Second Italo-Abyssinian War (also known as the Second Italo-Ethiopian War or the Abyssinian War)
+1936-1939 Spanish Civil War
+1939-1945 World War II
+1945-1990 Cold War
+1946-1949 Chinese Civil War resumes
+1946-1954 First Indochina War (also known as the French Indochina War)
+1948 Israel War of Independence (also known as the Arab-Israeli War)
+1950-1953 Korean War
+1954-1962 French-Algerian War
+1955-1972 First Sudanese Civil War
+1956 Suez Crisis
+1959 Cuban Revolution
+1959-1973 Vietnam War
+1967 Six-Day War
+1979-1989 Soviet-Afghan War
+1980-1988 Iran-Iraq War
+1990-1991 Persian Gulf War
+1991-1995 Third Balkan War
+1994 Rwandan Genocide
+
+
+
+
+Colors in R
+http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+
+
+
+
+Why plot in the first place:
+https://thomaslevine.com/!/user-2015/
+
+
+
+Ordering the factor variables in ggplot
+https://kohske.wordpress.com/2010/12/29/faq-how-to-order-the-factor-variables-in-ggplot2/
+
+
+Remove Bars with Small Counts from Bar Chart in ggplot2
+http://stackoverflow.com/questions/22587130/remove-bars-with-small-counts-from-bar-chart-in-ggplot2
+
+
+Apply a FN to columns in a DF
+http://stackoverflow.com/questions/18503177/r-apply-function-on-specific-dataframe-columns
+
+
+
+R - Apply: (A brief introduction to “apply” in R)
+https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
+
+
+how to remove outliers in a dataframe based on a categorical variable in R
+http://stackoverflow.com/questions/31235660/how-to-remove-outliers-in-a-dataframe-based-on-a-categorical-variable-in-r
+
+
+
+Mixing Multiple graphs on the same page
+http://www.sthda.com/english/wiki/ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page-r-software-and-data-visualization
+
+
+
+GGPLOT THEME Options
+http://docs.ggplot2.org/current/theme.html
+
+More:
+http://www.sthda.com/english/wiki/ggplot2-axis-ticks-a-guide-to-customize-tick-marks-and-labels
+
+More:
+http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
+
+DendoGrams:
+https://rpubs.com/gaston/dendrograms
+
+
+
+
+
+Analysis of categorical variables:
+
+Good Video:
+https://www.youtube.com/watch?v=xLcrJNEYOTk
+
+Good Video:
+https://www.youtube.com/watch?v=q5oPcgctQpk
+
+
+
+the mosaic display, attributed to Hartigan and Kleiner (1981), is a graphical method to show the values (cell frequencies) in a contingency table cross-classified by one or more “factors”.
+
+
+How to interpret the residual colors of a mosaic plot
+http://stats.stackexchange.com/questions/147863/how-to-interpret-the-residual-colors-on-a-mosaic-plot
+
+http://www.statmethods.net/advgraphs/mosaic.html
+
+
+
+Visualizing Contingency Tables:
+
+	* http://alumni.media.mit.edu/~tpminka/courses/36-350.2001/lectures/day12/
+
+
+
+
+How can you visualize the relationship between 3 categorical variables?
+http://stats.stackexchange.com/questions/148554/how-can-you-visualize-the-relationship-between-3-categorical-variables
+
+
+
+VCD Tutorial:
+https://cran.r-project.org/web/packages/vcdExtra/vignettes/vcd-tutorial.pdf
+
+
+Labeling Mosaic Plots:
+http://stackoverflow.com/questions/20228326/mosaic-plot-with-labels-in-each-box-showing-a-name-and-percentage-of-all-observa
+
+
+VIDEO:
+https://www.youtube.com/watch?v=ato8DrKF1ck
+
+
+Understanding Mosaic Plots:
+http://www.theusrus.de/blog/understanding-mosaic-plots/
+
+
+Extended Moasic Plots:
+http://finzi.psych.upenn.edu/R/library/vcd/html/mosaic.html
+
+MORE....
+http://stats.stackexchange.com/questions/153446/r-how-to-interpret-mosaic-and-association-plots
+
+
+
+Mosaic plots 
+http://alumni.media.mit.edu/~tpminka/courses/36-350.2001/lectures/day12/
+
+
+
+GGPlot Legend:
+http://www.sthda.com/english/wiki/ggplot2-legend-easy-steps-to-change-the-position-and-the-appearance-of-a-graph-legend-in-r-software
+
+
+
+R SQL DF Package
+http://cran.at.r-project.org/web/packages/sqldf/index.html
+
+http://www.gettinggeneticsdone.com/2010/05/use-sql-queries-to-manipulate-data.html
+
+
+
+
+Diagrams for categorical data:
+http://www.uni-kiel.de/psychologie/rexrepos/posts/diagCategorical.html
+
+
+Exploratory factor analysis for ordinal categorical data
+http://www.uni-kiel.de/psychologie/rexrepos/posts/multFApoly.html
+
+
+
+Introduction to phylogenies in R
+http://www.phytools.org/eqg/Exercise_3.2/
+
+http://www.phytools.org/
+
+http://www.r-phylo.org/wiki/HowTo/InputtingTrees
+
+http://www.r-bloggers.com/picturing-trees/
+
+
+
+
+Categorical Data Analysis and Visualization
+http://rpackages.ianhowson.com/cran/extracat/
+
+
+
+
+alluvial-diagrams
+http://bc.bojanorama.pl/2014/03/alluvial-diagrams/
+
+
+alluvial Library on GitHub:
+https://github.com/mbojan/alluvial
+
+
+InstallationUsing "devtools" package:
+library(devtools)
+install_github("mbojan/alluvial")
+
+GITHUB:
+https://github.com/mbojan/alluvial/blob/master/examples/alluvial.R
+
+
+Explanation:
+http://bc.bojanorama.pl/2014/03/alluvial-diagrams/#comment-58671
+
+
+
+
+R Markdown:
+http://rmarkdown.rstudio.com/
+
+http://rmarkdown.rstudio.com/html_document_format.html#appearance-and-style
+
+
+Fabulous Resource:
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

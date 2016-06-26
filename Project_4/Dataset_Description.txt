@@ -1,0 +1,320 @@
+The International Crisis Behavior (ICB) Project 
+URL: http://sites.duke.edu/icbdata/data-collections
+
+Version 11
+The most recent versions of the primary ICB data sets (Version 11) contain information for all crises occurring during the 1918-2013 period. The datasets include information on 470 international crises and 1036 crisis actors. There are 35 protracted conflicts. (Version 11 announcement)
+
+To give attribution of the data, we ask that users cite both the Brecher and Wilkenfeld (2000) A Study of Crisis book that describes the theoretical foundations for how the data can help us understand the nature of crisis behavior and the Brecher, Wilkenfeld, Beardsley, James and Quinn (2016) data codebook:
+
+Brecher, Michael and Jonathan Wilkenfeld (2000). A Study of Crisis. Ann Arbor: University of Michigan Press.
+
+Brecher, Michael, Jonathan Wilkenfeld, Kyle Beardsley, Patrick James and David Quinn (2016). International Crisis Behavior Data Codebook, Version 11. http://sites.duke.edu/icbdata/data-collections/
+
+
+STR Output of the Dataset:
+## 'data.frame':    1036 obs. of  95 variables:
+##  $ icb2    : Factor w/ 2 levels "ICB2","UCB2": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ crisno  : int  1 2 2 3 4 4 4 4 5 5 ...
+##  $ cracno  : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ cracid  : int  365 93 94 365 365 366 368 367 315 290 ...
+##  $ actor   : Factor w/ 143 levels "AFG","ALB","ALG",..: 109 91 29 109 109 42 77 73 33 103 ...
+##  $ systrgyr: int  1918 1918 1918 1918 1918 1918 1918 1918 1919 1919 ...
+##  $ systrgmo: int  5 5 5 6 11 11 11 11 1 1 ...
+##  $ systrgda: int  NA 25 25 23 18 18 18 18 15 15 ...
+##  $ crisname: Factor w/ 469 levels "AALAND ISLANDS",..: 377 113 113 378 27 27 27 27 431 431 ...
+##  $ triggr  : int  9 7 4 7 6 9 9 9 2 7 ...
+##  $ yrtrig  : int  1918 1918 1919 1918 1918 1918 1918 1918 1919 1919 ...
+##  $ motrig  : int  5 5 1 6 11 11 12 12 1 1 ...
+##  $ datrig  : int  NA 25 25 23 18 22 NA NA 15 23 ...
+##  $ trigent : int  996 94 996 997 366 365 365 365 290 315 ...
+##  $ trigloc : int  2 1 2 1 1 1 1 1 1 1 ...
+##  $ southv  : int  220 94 93 200 366 365 365 365 290 315 ...
+##  $ southpow: int  3 1 1 3 1 3 3 3 2 1 ...
+##  $ sizedu  : int  1 NA NA 1 1 NA NA NA NA NA ...
+##  $ strcdu  : int  1 1 NA 1 1 1 1 1 1 1 ...
+##  $ comlev  : int  7 1 1 7 8 8 8 8 3 3 ...
+##  $ majres  : int  8 3 6 8 8 9 9 9 8 8 ...
+##  $ yerres  : int  1918 1918 1919 1918 1918 1918 1918 1918 1919 1919 ...
+##  $ monres  : int  5 5 1 7 11 11 12 12 1 1 ...
+##  $ dayres  : int  28 30 28 1 22 22 NA NA 23 23 ...
+##  $ trgresra: int  14 6 4 9 5 1 NA NA 9 1 ...
+##  $ crismg  : int  8 4 4 8 8 8 8 8 8 8 ...
+##  $ cenvio  : int  4 1 1 4 4 4 4 4 4 4 ...
+##  $ sevvio  : int  3 1 1 3 3 3 3 3 3 3 ...
+##  $ usinv   : int  7 7 7 3 3 3 3 3 3 3 ...
+##  $ usfavr  : int  3 1 3 3 3 1 1 1 3 3 ...
+##  $ suinv   : int  9 1 1 9 9 8 8 8 1 1 ...
+##  $ sufavr  : int  8 5 5 8 8 3 3 3 5 5 ...
+##  $ gbinv   : int  7 1 1 8 3 6 3 3 3 3 ...
+##  $ gbfavr  : int  NA 5 5 NA NA NA NA NA 3 3 ...
+##  $ frinv   : int  2 1 1 8 3 1 3 3 3 3 ...
+##  $ frfavr  : int  NA 5 5 NA NA NA NA NA 3 3 ...
+##  $ itinv   : int  1 1 1 1 1 1 1 3 3 3 ...
+##  $ itfavr  : int  NA 5 5 NA NA NA NA NA 3 3 ...
+##  $ grinv   : int  1 1 1 1 8 1 1 8 1 1 ...
+##  $ grfavr  : int  NA 5 5 NA NA NA NA NA NA NA ...
+##  $ jpinv   : int  7 1 1 1 1 1 1 1 3 3 ...
+##  $ jpfavr  : int  NA 5 5 NA NA NA NA NA 3 3 ...
+##  $ globorg : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ globact : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ globfavr: int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ regorg  : int  0 1 1 0 0 0 0 0 0 0 ...
+##  $ regact  : int  0 1 1 0 0 0 0 0 0 0 ...
+##  $ rofavr  : int  0 5 5 0 0 0 0 0 0 0 ...
+##  $ outcom  : int  1 1 4 1 4 1 1 1 2 2 ...
+##  $ outfor  : int  6 4 4 6 9 8 8 8 9 9 ...
+##  $ outevl  : int  2 2 3 2 3 2 2 2 4 4 ...
+##  $ outesr  : int  1 2 2 1 2 2 2 2 2 2 ...
+##  $ yrterm  : int  1920 1918 1919 1919 1920 1920 1920 1920 1920 1920 ...
+##  $ moterm  : int  4 12 9 9 8 2 7 8 7 7 ...
+##  $ daterm  : int  1 15 3 27 11 2 12 11 28 28 ...
+##  $ trgterra: int  686 205 222 462 632 438 574 603 560 552 ...
+##  $ resterra: int  673 199 218 453 627 438 574 603 551 552 ...
+##  $ actloc  : int  30 42 42 30 30 34 34 34 31 31 ...
+##  $ geog    : int  30 42 42 30 34 34 34 34 31 31 ...
+##  $ cractloc: int  1 1 1 1 1 2 2 2 1 1 ...
+##  $ noactr  : int  7 5 6 5 8 8 8 8 3 3 ...
+##  $ stainsys: int  47 47 49 47 47 47 47 47 49 49 ...
+##  $ period  : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ syslev  : int  2 1 1 2 2 1 1 1 1 1 ...
+##  $ pc      : int  2 2 2 2 1 1 1 1 1 1 ...
+##  $ pcid    : int  27 6 6 27 0 0 0 0 0 0 ...
+##  $ viol    : int  3 1 2 3 3 3 3 3 3 3 ...
+##  $ iwc     : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ powdis  : int  NA 1 -1 NA 12 -12 -12 -12 -1 1 ...
+##  $ gpinv   : int  7 4 4 7 7 7 7 7 3 3 ...
+##  $ powinv  : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ age     : int  1 3 3 1 1 3 3 3 3 3 ...
+##  $ territ  : int  3 1 1 3 3 1 1 1 1 2 ...
+##  $ regime  : int  2 2 2 2 2 2 2 2 1 4 ...
+##  $ durreg  : int  1 2 1 1 1 1 1 1 1 1 ...
+##  $ allycap : int  4 2 1 4 4 2 2 2 1 1 ...
+##  $ globmemb: int  4 4 4 4 4 4 4 4 4 4 ...
+##  $ nuclear : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ powsta  : int  3 1 1 3 3 1 1 1 1 2 ...
+##  $ issue   : int  1 1 1 1 2 2 2 2 1 1 ...
+##  $ chissu  : int  4 6 6 4 6 6 6 6 6 6 ...
+##  $ gravty  : int  2 1 2 2 3 6 6 6 3 3 ...
+##  $ pethin  : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ col     : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ unemp   : int  NA NA NA NA NA 4 4 4 4 4 ...
+##  $ inflat  : int  1 1 1 1 1 4 4 4 4 4 ...
+##  $ foodpr  : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ labstr  : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ short   : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ econdt  : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ regrep  : int  NA 1 1 NA NA 4 4 4 4 4 ...
+##  $ socunr  : int  1 NA NA 1 1 4 4 4 4 4 ...
+##  $ massvl  : int  1 1 1 1 1 4 4 4 4 4 ...
+##  $ gvinst  : int  1 2 NA 1 1 4 4 4 4 4 ...
+##  $ sourdt  : int  3 2 2 3 3 3 3 3 3 3 ...
+
+
+Definitions of Attributes used in this exploration (all 96 were not used, only a dozen or so):
+
+“Crisis Trigger”
+The trigger or precipitating cause of a foreign policy crisis refers to the specific act, event or situational change which leads decision-makers to perceive a threat. A trigger may be initiated by: an adversary state; a non-state actor; or a group of states (military alliance).
+
+
+Verbal act - protest, threat, accusation, demand, etc.
+
+Political act - subversion, alliance formation by adversaries, diplomatic sanctions, severance of diplomatic relations, violation of treaty
+
+Economic act - embargo, dumping, nationalization of property, withholding of economic aid.
+
+External change - intelligence report, change in specific weapon, weapon system, offensive capability, change in global system or regional subsystem, challenge to legitimacy by international organization.
+
+Other non-violent act.
+
+Internal verbal or physical challenge to regime or elite - incitement by media, proclamation of new regime, fall of government, coup d’etat, sabotage act, terrorism, assassination, riot, demonstration, strike, arrest, martial law, execution, mutiny, revolt.
+
+Non-violent military act - show of force, war game or maneuvers, mobilization, movement of forces, change of force posture to offensive.
+
+Indirect violent act.
+
+Violent act - border clash, border crossing by limited force, invasion of air space, sinking of ship, sea-air incident, bombing of large target, large-scale military attack, war.
+
+
+
+“Crisis Issue”
+This variable identifies the most important initial issue area of the crisis as perceived by the crisis actor.
+
+
+Military-security - territory, borders, access to the sea, free navigation, irredentism, change in the military balance, military incidents, war.
+
+Political-diplomatic - sovereignty, hegemony, international status, change in international system, colonialism, cold war.
+
+Economic-developmental - treatment of property, raw material resources, oil, economic recession, economic pressure, currency problems.
+
+Cultural-status - ideology, threat to non-material values, internal problems, state of regime, population problems.
+
+Other.
+
+
+
+“Major Response”
+Once the decision makers of a state perceive the act/event/change which triggers its crisis, they will decide on an appropriate response. The major response is that specific action which captures the major thrust of its behavior.
+
+
+No response-inaction.
+
+Verbal act - protest, threat, accusation, demand, etc.
+
+Political act - subversion, alliance formation by adversaries, diplomatic sanctions, severance of diplomatic relations, violation of treaty threat to commit economic or military act..
+
+Economic act - embargo, dumping, nationalization of property, withholding of economic aid.
+
+Other non-violent act.
+
+Non-violent military act - declaration of war, show of force, war games or maneuvers, mobilization, movement of forces, with demand of forces, change of force posture to offensive, military aid.
+
+Multiple including non-violent military act.
+
+Violent military act - border clash, border crossing by limited force, invasion of air space, sinking of ship, sea-air incident, bombing of large target, large-scale military attack, war.
+
+Multiple including violent military act.
+
+
+
+“Coping Technique”
+States employ a variety of techniques to cope with foreign policy crises. This variable identifies the primary crisis management technique used by a crisis actor, as distinct from a specific act, which was the focus of the major response variable.
+
+
+Negotiation - formal, informal, bilateral, multilateral, international, diplomatic exchange.
+
+Adjudication or arbitration.
+
+Mediation - by global or regional organization, ally, or alliance personnel.
+
+Multiple not including violence.
+
+Non-military pressure - e.g., withholding of promised economic aid.
+
+Non-violent military - physical acts (maneuvers, repositioning of forces); verbal acts (oral and written statements by authorized leaders threatening to use violence).
+
+Multiple including violence.
+
+Violence.
+
+
+
+“Actor Power Status”
+The power status of the actor (the one who has to respond to the crisis).
+
+
+Small power.
+
+Middle power.
+
+Great power.
+
+Superpower.
+
+
+
+“Threat Power Status”
+This variable assesses the power status of the state or other entity identified as the source of the threat.
+
+
+Small power.
+
+Middle power.
+
+Great power.
+
+Superpower.
+
+
+
+“Crisis Violence”
+This variable identifies the extent of violence experienced by a crisis actor, regardless of its use or non-use as a crisis management technique.
+
+
+No violence.
+
+Minor clashes .
+
+Serious clashes.
+
+Full-scale war .
+
+
+
+“Political Regime”
+This variable distinguishes between authoritarian and democratic regimes, as well as between civil and military regimes at the time of the crisis. Criteria for identifying democratic regimes are: competitive elections; pluralist representation in the legislature; several autonomous centers of authority in the political system; competitive parties; and a free press.
+
+
+Democratic regime
+
+Civil authoritarian regime
+
+Military-direct rule
+
+Military-indirect rule
+
+Military dual authority
+
+
+
+“Alliance Patterns”
+This variable identifies the type of alliance pattern which existed for the crisis actor at the time of its crisis.
+
+
+Non-aligned or neutral.
+
+Informal alliance with superpower or great power.
+
+Formal alliance with superpower or great power.
+
+Alliance leader - superpower or great power.
+
+“Nuclear Capability”
+Did the crisis actor possess nuclear weapons or access to them at the time the crisis began?
+
+
+No (foreseeable) nuclear capability - the actor did not possess a nuclear capability with any operational military significance when the crisis began; moreover, the international consensus at the time was that it could not develop or acquire such capability within five years.
+
+Foreseeable nuclear capability - the actor could develop or acquire operational nuclear military capability within five years of the beginning of the crisis.
+
+Possession of nuclear capability - the actor had nuclear military capability (weapons) and delivery means but no second-strike capability.
+
+Developed nuclear capability, with second strike capability superpower or great power with ability to absorb a first strike and retaliate.
+
+
+
+“Gravest Threat”
+This variable identifies the object of gravest threat at any time during the crisis, as perceived by the principal decision makers of the crisis actor.
+
+
+Economic threat.
+
+Limited military threat.
+
+Political threat - threat of overthrow of regime, change of institutions, replacement of elite, intervention in domestic politics, subversion .
+
+Territorial threat - threat of integration, annexation of part of a state’s territory, separatism.
+
+Threat to influence in the international system or regional subsystem - threat of declining power in the global system and/or regional subsystem, diplomatic isolation, cessation of patron aid .
+
+Threat of grave damage - threat of large casualties in war, mass bombings.
+
+Threat to existence - threat to survival of population, of genocide, threat to existence of entity, of total annexation, colonial rule, occupation.
+
+Other.
+
+
+
+“Crisis Outcome”
+This variable deals with the content of crisis termination. Did a crisis actor yield? Did it triumph? Was a compromise reached? Was there a blurred outcome regarding goal achievement? The outcome is indicated from the perspective of a specific actor. The values which fall under the categories listed below should be thought of in terms of achievement/nonachievement of basic goals(s) by a crisis actor in the context of a specific crisis.
+
+
+Victory - achievement of basic goal(s); the crisis actor defeated a threatening adversary by counter-threats .
+
+Compromise - partial achievement of basic goal(s).
+
+Stalemate - no effect on basic goal(s); no clear outcome to the crisis; no change in the situation.
+
+Defeat - non-achievement of basic goal(s); the crisis actor yielded or surrendered when an adversary threatened basic values.
+
+Other.
+
