@@ -1,0 +1,462 @@
+// *********************************************************************
+// Filename: MongoDB_Queries.txt
+//
+// Course: Udacity Data Science ND -- "Data Wrangling with MongoDB"
+// Project: OpenStreetMap Data Case Study
+//
+// @author: Matthew R. Versaggi
+// @email: profversaggi@gmail.com
+// Description
+//  This file contains the MongoDB Queries used to explore the OSM 
+//  dataset into a local MongoDB instance. This is a superset of the
+//  queries used in the final submission for completeness sake.
+//  Each of these can be executed at the command line or via a MongoDB
+//  IDE and they will execute properly. This should be considered a 
+//  historical perspective into the exploration of the OSM extraction
+//  used in this project.
+//
+// *********************************************************************
+
+
+// ****************************
+// *** POSTAL CODES QUERIES ***
+// ****************************
+
+// Single system call method - find all the unique postal codes
+db.minneapolis.distinct('address.postcode').length
+
+
+// Aggregation / pipeline method - determine the Unique Postal Codes
+db.minneapolis.aggregate([
+{ $group: { _id: { user : '$address.postcode'}, postalcodeSet: { $addToSet: '$address.postcode'} }},
+{  $unwind: "$postalcodeSet" },
+{  $group: { _id: '_', uniquePostalCodeCount: { $sum:1} }}
+])
+
+
+// List all unique Postal Codes and their corresponding counts
+db.minneapolis.aggregate([
+    {
+        $match: {
+            'address.postcode' : {$ne : null} 
+        }
+    },
+{ $unwind: "$address.postcode" },
+{
+        $group: {
+            _id: {$toLower: '$address.postcode'},
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 100 }    
+])
+
+
+// Tally the total number of postal codes
+db.minneapolis.aggregate([
+	{ $match :{ 'address.postcode' :{ $exists :1}}}, 
+	{ $group :{_id :'address.postcode', count: { $sum :1}}}, 
+	{ $sort : { count : -1} }
+	])
+
+
+
+
+// *******************************
+// *** ADDRESS STREETS QUERIES ***
+// *******************************
+
+// Single system call method - find all the unique streets
+db.minneapolis.distinct('address.street').length
+
+
+// Aggregation / pipeline method - determine the Unique streets
+db.minneapolis.aggregate([
+{ $group: { _id: { user : '$address.street'}, streetSet: { $addToSet: '$address.street'} }},
+{  $unwind: "$streetSet" },
+{  $group: { _id: '_', uniqueStreetNameCount: { $sum:1} }}
+])
+
+
+// List all unique streets and their corresponding counts
+db.minneapolis.aggregate([
+    {
+        $match: {
+            'address.street' : {$ne : null} 
+        }
+    },
+{ $unwind: '$address.street' },
+{
+        $group: {
+            _id: {$toLower: '$address.street'},
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 1000 }    
+])
+
+
+// Tally the total number of streets
+db.minneapolis.aggregate([
+	{ $match :{ 'address.street' :{ $exists :1}}}, 
+	{ $group :{_id :'address.street', count: { $sum :1}}}, 
+	{ $sort : { count : -1} }
+	])
+
+
+// *************************
+// *** DOCUMENTS QUERIES ***
+// *************************
+
+// Count the documents in a collection
+db.minneapolis.aggregate(
+   [
+      { $group: { _id: '_', count: { $sum: 1 } } }
+   ]
+)
+
+// Cross check - Count the documents in a collection
+db.minneapolis.find().count() 
+
+
+
+// **************************
+// *** STATISTICS QUERIES ***
+// **************************
+
+// Display Collection Stats (including size of file on disk)
+db.minneapolis.stats({ scale : 1048576 })
+
+
+
+// *********************
+// *** NODES QUERIES ***
+// *********************
+
+// Count the type = 'nodes' in a collection using aggregation
+db.minneapolis.aggregate(
+   [
+      { $match  : { type : 'node'} },
+      { $group: { _id: '_', nodesCount: { $sum: 1 } } }
+   ]
+)
+
+// Cross check using straight system call
+// Count the NODES in a collection
+db.minneapolis.count( { type: 'node' } )
+
+
+
+
+// ********************
+// *** WAYS QUERIES ***
+// ********************
+
+// Count the type = 'ways' in a collection using aggregation
+db.minneapolis.aggregate(
+   [
+      { $match  : { type : 'way'} },
+      { $group: { _id: '_', waysCount: { $sum: 1 } } }
+   ]
+)
+
+
+// Cross check using straight system call
+// Count the WAYS in a collection
+db.minneapolis.count( { type: 'way' } )
+
+
+// ********************
+// *** USER QUERIES ***
+// ********************
+
+
+// Aggregation / pipeline method - count the unique users contributing
+db.minneapolis.aggregate([
+{ $group: { _id: { user : '$created.user'}, userSet: { $addToSet: '$created.user'} }},
+{  $unwind: "$userSet" },
+{  $group: { _id: '_', uniqueUserCount: { $sum:1} }}
+])
+
+
+// Single system call method - count the unique users contributing
+db.minneapolis.distinct('created.user').length
+
+
+// List those unique Users in order of contribution counts
+db.minneapolis.aggregate([
+	{ $group:{ _id : '$created.user', count :{ $sum : 1} }},
+	{ $sort : { count : -1} },
+	{ $limit : 500}
+	])
+
+
+// Count total number of users having only 1 post
+db.minneapolis.aggregate([
+{$group:{_id:'$created.user', count:{$sum:1}}}, 
+{$group:{_id:'$count', num_users:{$sum:1}}}, 
+{$sort:{_id:1}}, {$limit:1}
+])
+
+
+
+// ****************************
+// *** CHOSEN TYPES QUERIES ***
+// ****************************
+
+// *** PUBS & BREWERYS ***
+
+// List the Pubs which are also microbrewery's
+db.minneapolis.aggregate([
+	{ $match: { 
+	  		amenity : { $exists :1}, 
+			amenity : 'pub',
+			microbrewery : 'yes' } }, 
+	{ $group: { _id : '$name', 
+				count: { $sum :1 }}},        
+	{ $sort : { count : -1} },
+	{ $limit : 10 }
+	])
+
+
+// Fetch the count of the Pubs which are also microbrewery's
+db.minneapolis.aggregate([
+	{ $match: { 
+	  		amenity : { $exists :1}, 
+			amenity : 'pub' } }, 
+	{ $group: { _id : '$microbrewery', 
+				count: { $sum :1 }}},        
+	{ $sort : { count : -1} },
+	{ $limit : 10 }
+	])
+
+
+// *** CUISINE ***
+
+// Fetch the count of the most popular type of food establishments:
+db.minneapolis.aggregate([
+    { $match: {
+            amenity: { $exists :1},
+            amenity : 'restaurant',} },
+	{ $group: { _id : '$cuisine',
+                count: { $sum: 1 }}},
+	{ $sort : { count : -1} },
+	{ $limit : 10 }    
+	])
+
+
+// *** RELIGION ***
+
+// Fetch the count of each unique religious place of worship:
+db.minneapolis.aggregate([
+    {
+        $match: {
+            amenity: {$ne : null},
+            amenity: 'place_of_worship' 
+        }
+    },
+{ $unwind: "$amenity" },
+{
+        $group: {
+            _id: '$religion',
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 10 }    
+])
+
+
+
+// ****************************
+// *** AD HOC STATS QUERIES ***
+// ****************************
+
+
+// *** RAILWAY ***
+
+// Find the number of distinct railways using a system call
+db.minneapolis.distinct('railway').length
+
+
+// Aggregation / pipeline method to Find the number of distinct railways
+db.minneapolis.aggregate([
+    { $group: { _id: { railway : '$railway'}, railwaySet: { $addToSet: '$railway'} }},
+    {  $unwind: "$railwaySet" },
+    {  $group: { _id: '_', uniqueRailwayCount: { $sum:1} }}
+])
+
+
+// Count ALL of the 'railways' in a collection using aggregation
+db.minneapolis.aggregate(
+   [
+      { $match  : { railway : {$ne : null} } },
+      { $group: { _id: '_', railwayCount: { $sum: 1 } } }
+   ]
+)
+
+
+// List the unique railways and their individual counts using aggregation
+db.minneapolis.aggregate([
+    {
+        $match: {
+            railway: {$ne : null}
+        }
+    },
+{ $unwind: "$railway" },
+{
+        $group: {
+            _id: {$toLower: '$railway'},
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 100 }   
+])
+
+
+
+// *** BUILDING ***
+
+// Find the number of distinct building using a system call
+db.minneapolis.distinct('building').length
+
+// Aggregation / pipeline method to Find the number of distinct buildings
+db.minneapolis.aggregate([
+    { $group: { _id: { building : '$building'}, buildingSet: { $addToSet: '$building'} }},
+    {  $unwind: "$buildingSet" },
+    {  $group: { _id: '_', uniqueBuildingCount: { $sum:1} }}
+])
+
+
+// Count the buildings in a collection using aggregation
+db.minneapolis.aggregate(
+   [
+      { $match  : { building : {$ne : null} } },
+      { $group: { _id: '_', buildingCount: { $sum: 1 } } }
+   ]
+)
+
+// List the unique buildings and their individual counts using aggregation
+db.minneapolis.aggregate([
+    {
+        $match: {
+            building: {$ne : null}
+        }
+    },
+{ $unwind: "$building" },
+{
+        $group: {
+            _id: {$toLower: '$building'},
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 100 }   
+])
+
+
+// *** NATURAL ELEMENTS ***
+
+// Find the number of distinct natural elements using a system call
+db.minneapolis.distinct('natural').length
+
+
+// Aggregation / pipeline method to Find the number of distinct natural elements
+db.minneapolis.aggregate([
+    { $group: { _id: { natural : '$natural'}, naturalSet: { $addToSet: '$natural'} }},
+    {  $unwind: "$naturalSet" },
+    {  $group: { _id: '_', uniqueNaturalCount: { $sum:1} }}
+])
+
+
+// Count the natural elements in a collection using aggregation
+db.minneapolis.aggregate(
+   [
+      { $match  : { natural : {$ne : null} } },
+      { $group: { _id: '_', naturalCount: { $sum: 1 } } }
+   ]
+)
+
+// List the unique natural elements and their individual counts using aggregation
+db.minneapolis.aggregate([
+    {
+        $match: {
+            natural: {$ne : null}
+        }
+    },
+{ $unwind: "$natural" },
+{
+        $group: {
+            _id: {$toLower: '$natural'},
+            count: { $sum: 1 }
+        }
+    },
+{ $sort : { count : -1} },
+{ $limit : 100 }   
+])
+
+
+// ****************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

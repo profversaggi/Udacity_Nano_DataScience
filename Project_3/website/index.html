@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>DataWrangling MongoDB</title>
+</head>
+<body link="black" vlink="black">
+
+
+<!-- BEGIN MAIN TABLE START -->
+<table summary="Main Config Table" align="left" width="800" border="0" cellpadding="0" cellspacing="5">
+<tr><td>
+<!-- END MAIN TABLE START -->
+
+
+
+<a id="top"></a>
+<table summary="Logo Table" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr><td align="center">
+<img src="img/submission-logo.jpg" alt="Submission logo"   />
+<img src="img/mrv-linkedin-logo-small.jpg" alt="LinkedIn logo"  />
+<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+<img src="img/minneapolis-st-paul-extract.jpg" alt="Minneapolis St-Paul Extract" />
+</td></tr>
+</table>
+
+
+
+
+<a id="toc"></a>
+<table summary="TOC" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr><td>
+<h1><font face="tahoma" size="5">Table of Contents</font></h1>
+<ul>
+<li><a href="#Introduction" style="text-decoration: none"><font face="tahoma" size="3">Introduction.</font></a></li>
+<li><a href="#problems_encountered" style="text-decoration: none"><font face="tahoma" size="3" >Problems Encountered in the Map.</font></a></li>
+<li><a href="#data_overview" style="text-decoration: none"><font face="tahoma" size="3" >DataSet Overview.</font></a></li>
+<li><a href="#additional_ideas" style="text-decoration: none"><font face="tahoma" size="3" >Additional Ideas for Improvements.</font></a></li>
+<li><a href="#mongodb_queries_results" style="text-decoration: none"><font face="tahoma" size="3" >MongoDB Queries and Results.</font></a></li>
+<li><a href="#conclusion" style="text-decoration: none"><font face="tahoma" size="3" >Conclusions.</font></a></li>
+</ul>
+<BR>
+</td></tr>
+</table>
+
+
+
+<table summary="Introduction" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+  <a id="introduction"><strong><font face="tahoma" size="5">Introduction</font></strong></a> <img src="img/1pixel.gif" alt="ipixel" width="10"/> <strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[TOC]</font></strong></a> <strong><a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+  <img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  <font face="tahoma" size="3">
+	OpenStreetMap ( <a href="https://www.openstreetmap.org" style="text-decoration: none"><font face="tahoma" size="2">https://www.openstreetmap.org</font></a> ) is a wonderful opensource street mapping project that is populated by volunteers around the globe. <strong>It does have one problem though</strong>, since it's populated by volunteers, it's data has a quality controll problem. That makes it an <strong>excellent prospect for real world Data Wrangling</strong>.
+	<BR><BR>
+	<strong>This project will:</strong> <BR>	
+	<ul>
+	<li><strong>Procure data extracts</strong> from the OpenStreetMap project..</li>
+	<li><strong>Assess the quality of the data for </strong>validity, accuracy, completeness, consistency and uniformity.</li>
+	<li><strong>Parse and gather data</strong> from popular file formats such as .json, .xml, .csv, .html.</li>
+	<li><strong>Process data</strong> from many files and very large files that will be cleaned programatically.</li>
+	<li><strong>Store, query, and aggregate data</strong> using MongoDB.</li>
+	</ul>	
+
+	<h4>Behind the Scenes Efforts</h4>	
+	What is not obvious in this report is that <strong>data procurement</strong> and <strong>coding effort</strong> behind the scenes. The final data extraction ("<strong>Minneapolis_St-Paul.osm</strong>") is the result of multiple attempts with <strong>MapZen</strong> ( <a href="https://mapzen.com/data/metro-extracts/" style="text-decoration: none"><font face="tahoma" size="2">https://mapzen.com/data/metro-extracts/</font></a> ) to procure just the right dataset with a rich enough data representation to be interesting. There are also five <strong>python scripts</strong> which effectively represent the process of auditing, cleaning, transforming and preparing the data to a form in which a local MongoDB instance can readily import it. Finally a text file containing the various <strong>MongoDB Queries</strong> is present that contains the key queries used in the project.
+	
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/files-scripts-data.jpg" alt="Files: Scripts and Data" />
+	
+	
+	
+  </font>
+  <img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+
+<table summary="Problems Encountered" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<a id="problems_encountered"><strong><font face="tahoma" size="4">Problems Encountered in the Map</font></strong></a><img src="img/1pixel.gif" alt="ipixel" width="10"/><strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[Toc]</font></strong></a> <strong><a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/openstreetmap_logo-small.jpg" alt="OpenStreetMap" />
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+	<font face="tahoma" size="3">
+	Some of the problems I had encountered in my extracted map were the following:<BR>
+	<ul>
+	<li>Incorrect and inconsistent postal codes</li>
+	<li>Highly abbreviated street names</li>
+	<li>Uneven geographical contributions</li>
+	</ul>
+	
+	<h4>Incorrect and inconsistent postal codes</h4>
+	A cursory review uncovered that the postal codes varied between a five number code and a ten number code, which was later trimmed down to a standard 5 digit code for consistency sake. 
+	<BR><BR>
+	<img src="img/postal-codes-issue.jpg" alt="Postal Codes Issue" />
+	
+	
+	<h4>Highly abbreviated street names</h4>
+	A quick perusal of the street names revealed that a problem of an overly abbreviated naming convention existed and needed to be rectified. Street names were expanded prior to exporting to the final JSON format (for MongoDB Input).
+	<BR><BR>
+	<img src="img/street-names-issue.jpg" alt="Street Names Issue" />
+	
+	<h4>Uneven geographical contributions</h4>
+	Once the Data was in JSON format and ready for insertion into MongoDB, an audit of the data made it clear that there was not sufficient or consistent coverage of the POS (positional data) for many of the objects in the dataset. This was not a fixible problem at this point.
+	
+	</font>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+
+
+<table summary="Dataset Overview" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<a id="data_overview"><strong><font face="tahoma" size="3">DataSet Overview</font></strong></a> <img src="img/1pixel.gif" alt="ipixel" width="10"/><strong> <strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[TOC]</font></strong></a> <a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/mongodb-logo-small.jpg" alt="MongoDB" />
+	
+	<font face="tahoma" size="3">
+	<BR><BR>
+	A cursory exploration of the datset is performed highlighting a few key metrics and the MongoDB Queries used to achieve them:
+	
+	<h4>Number of Documents</h4>
+	<img src="img/number-documents-collection.jpg" alt="Number Of Documents" />
+	
+	<h4>Size of Data Extraction File</h4>
+	<img src="img/size-extraction-file.jpg" alt="Size of Extraction File" />
+	
+	<h4>Number of Nodes</h4>
+	<img src="img/number-nodes.jpg" alt="Number of Nodes in Collection" />
+
+	<h4>Number of Ways</h4>
+	<img src="img/number-ways.jpg" alt="Number of Ways in Collection" />
+
+	<h4>Number of Unique Users</h4> 
+	<img src="img/number-unique-users.jpg" alt="Number of Unique Users in Collection" />
+	
+	<h4>Top contributing users</h4>
+	<img src="img/top-contributing-users.jpg" alt="Top Contributing Users in Collection" />
+	
+	<h4>Users with only one post</h4>
+	<img src="img/number-users-one-post.jpg" alt="Number of users with just one post" />
+
+	<h4>Number of chosen types (cafes, restaurants, etc)</h4>
+	<img src="img/pubs-brewerys.jpg" alt="Pubs and Brewreys" />
+	<img src="img/favorite-cuisine.jpg" alt="Favorite Cuisine" />
+	<img src="img/number-religious-institutions.jpg" alt="Number of Religious Institutions" />
+		
+	</font>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+
+
+<table summary="Additional Ideas for Improvements" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<a id="additional_ideas"><strong><font face="tahoma" size="3">Additional Ideas for Improvements</font></strong></a><img src="img/1pixel.gif" alt="ipixel" width="10"/> <strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[TOC]</font></strong></a> <strong><a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+	<font face="tahoma" size="3">
+	
+	<h4>Contributor Skewness</h4>
+	The simple statistics below show a most egregious skewness of the contributions to the extraction dataset. One user contributing <strong>68.8%</strong> of the overall submissions is far too concentrated to tolerate. There must be better way to motivate users to contribute other than monetary rewards. Such ways might come in the form of recognition both <em>within</em> the user community and <em>outside</em> (Stack Overflow, Quora, Media [Online, Radio, etc...], and the like). 
+	<BR>
+	<img src="img/contributor-skewness.jpg" alt="Contributor Skewness" />
+	
+	<h4>GeoPositional Data Coverage</h4>
+	The <strong>POS</strong> data does not sufficiently cover all of the map extraction (however it <strong>does</strong> cover the parts it intends to cover. I'd recommend partnering users with geocaching expeditions and groups to foster a secondary goal to establish geoposition data in areas which are not represented just yet.
+	<BR>
+	
+	<h4>Benefits and Problems</h4>
+	The benefits of these suggestions are potentially: (1) better distribution of users contributing to the OSM dataset across the board, and (2) a start at getting better coverage of geopositional data for existing coverage areas. 
+	<BR><BR>
+	The downside to these suggestions are (like anything in the behavioral sciences): (A)  there is no guarrantee their implementation will actually translate into the envisioned result, (b) the cost of implementing these schemes might prove too high to warrant their existence, and (3) a diluted implementation might not have the potentcy of it's full strength counterpart.
+	
+	
+	<BR>
+	</font>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+
+<table summary="Additional Ad Hoc Statistics" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<a id="mongodb_queries_results"><strong><font face="tahoma" size="3">Additional Ad Hoc Statistics and Queries</font></strong></a><img src="img/1pixel.gif" alt="ipixel" width="10"/> <strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[TOC]</font></strong></a> <strong><a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/mongodb-logo-small.jpg" alt="MongoDB" />
+	<font face="tahoma" size="3">
+	
+	<h4>Additional Ad Hoc Statistics and Queries</h4>
+	<img src="img/ad-hoc-statistics.jpg" alt="Ad Hoc Statistics" />
+	<img src="img/list-natural-elements.jpg" alt="List Natural Elements" />
+	<img src="img/list-building-types-counts.jpg" alt="List Building TYpes" />
+	<img src="img/list-railway-types-counts.jpg" alt="List Building TYpes" />
+	
+	
+	</font>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+<table summary="Conclusion" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<a id="conclusion"><strong><font face="tahoma" size="3">Conclusion</font></strong></a><img src="img/1pixel.gif" alt="ipixel" width="10"/> <strong><a href="#toc" style="text-decoration: none"><font face="tahoma" size="3">[TOC]</font></strong></a> <strong><a href="#top" style="text-decoration: none"><font face="tahoma" size="3">[Top]</font></strong></a>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/conclusion.jpg" alt="Conclusion" />
+	<font face="tahoma" size="3">
+	<h4>Thoughts and Perspectives</h4>
+	
+	Aside from commenting on the quality of the extraction used in this project (which was <strong>quite good actually</strong>, all things considered), the key question is how good is open source OSM type map data compared to its commercial counterparts? This is a topic of significant interest (<em>see research papers listed below</em>) ( <a href="http://gis.stackexchange.com/questions/6062/quality-of-free-geodata-compared-to-commercial-sources" style="text-decoration: none"><font face="tahoma" size="2">GIS Stack Exchange</font></a> ) from the <strong>academic perspective</strong> ( <a href="http://www.ucl.ac.uk/~ucfamha/OSM%20data%20analysis%20070808_web.pdf" style="text-decoration: none"><font face="tahoma" size="2">How good is Volunteered Geographical Information?</font></a> ) and <strong>commercial</strong> ( <a href="http://searchengineland.com/founder-openstreetmap-good-better-google-maps-already-192089" style="text-decoration: none"><font face="tahoma" size="2">OSM Founder: OpenStreetMap already as good or better than google maps.</font></a> ). The general answer (and one which this project supports), is that OSM data (despite it's flaws) is pretty good, is closing the gap with it's commercial counterparts, and in some specific cases, actually better.
+	
+	
+	
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="1" border="0"/>
+	<img src="img/osm-research-papers.jpg" alt="OSM Research Papers"  />
+	
+	
+	
+	</font>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="10" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+
+
+<table summary="Spacer Table" align="left" width="800" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+	<img src="img/1pixel.gif" alt="ipixel" width="800" height="50" border="0"/>
+  </td>
+</tr>
+</table>
+
+
+<!-- BEGIN MAIN TABLE END -->
+ </td></tr>
+</table>
+<!-- END MAIN TABLE END -->
+
+
+
+</body>
+</html>
