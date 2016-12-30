@@ -1,0 +1,16 @@
+To Run the Visualization the EASY way w/out a Server using CHROME
+
+PROBLEM:
+Modern browsers implement security measures preventing you from accessing data files on the local drive
+
+SOLUTION
+Lauch Chrome with the "-allow-file-access-from-files" Flag.
+
+On Windows: (cd to chrome installation and launch on the command line using the FLAG.
+C:\Program Files (x86)\Google\Chrome\Application\
+chrome.exe --allow-file-access-from-files
+
+
+R&D:
+Allow Google Chrome to use XMLHttpRequest to load a URL from a local file
+http://stackoverflow.com/questions/4819060/allow-google-chrome-to-use-xmlhttprequest-to-load-a-url-from-a-local-file

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<!-- BEGIN HEAD Section -->
+<head>
+
+  <!-- Establish Base DOcument Encoding as "utf-8" -->
+  <meta charset="utf-8"> 
+  
+  <!-- Load the D3 Javascript Library -->
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  
+  <!-- BEGIN Styles Section -->
+  <style>
+
+	/* Create the Circle Objects attributes */
+      circle {
+        fill: red;
+        stroke: black;
+        stroke-width: 0.8;
+        opacity: 1.0;
+      }  
+  
+	/* Create the Square Objects attributes */
+      rect {
+        fill: red;
+        stroke: black;
+        stroke-width: 0.8;
+        opacity: 1.0;
+      }   
+  
+	/* Create the Elipse Objects attributes */
+      ellipse {
+        fill: red;
+        stroke: black;
+        stroke-width: 2.0;
+        opacity: 1.0;
+      }    
+  
+  	/* Create the Line Objects attributes */
+      line {
+        fill: red;
+        stroke: black;
+        stroke-width: 1.2;
+        opacity: 1.0;
+      } 
+  
+	/* Create the H2 Object attributes */
+      h2 {
+        text-align: center;
+        color: black;
+		font-family: Tahoma;
+		font-weight: bold;
+      } 
+	  
+	/* Create the cw_title Object attributes */
+      cw_title {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: black;
+		font-family: Tahoma;
+		font-weight: bold;
+      }	
+	  
+	/* Create the cw_title_year Object attributes */
+      cw_title_year {
+        position: fixed;
+        top: 20px;
+        left: 205px;
+        color: red;
+		font-family: Tahoma;
+		font-weight: bold;
+      }	  
+	  
+	/* Create the focus_title Object attributes */
+      focus_title {
+        position: fixed;
+        top: 60px;
+        left: 440px;
+        color: black;
+		font-family: Tahoma;
+		font-weight: bold;
+      }	  
+	  
+	/* Create the powdis_title Object attributes */
+      powdis_title {
+        position: fixed;
+        top: 460px;
+        left: 20px;
+        color: black;
+		font-family: Tahoma;
+		font-weight: bold;
+      }	
+	  
+	/* Create the powdis_result Object attributes */
+      powdis_result {
+        position: fixed;
+        top: 460px;
+        left: 210px;
+        color: red;
+		font-family: Tahoma;
+		font-weight: bold;
+      }		  
+	  
+	/* Create the outcome_title Object attributes */
+      outcome_title {
+        position: fixed;
+        top: 100px;
+        left: 450px;
+        color: black;
+		font-family: Tahoma;
+		font-weight: bold;
+		opacity: 1.0;
+      }		  
+	
+	/* Create the outcome_result Object attributes */
+      outcome_result {
+        position: fixed;
+        top: 100px;
+        left: 585px;
+        color: red;
+		font-family: Tahoma;
+		font-weight: bold;
+		opacity: 1.0;
+      }			
+	
+	/* Create the DIV Container Object (for Buttons) attributes */
+      div.years_buttons {
+        position: fixed;
+        top: 50px;
+        left: 15px;
+		border: 2px solid red;
+		background: black;
+		color: yellow;
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
+      }
+
+	  
+	/* Create the DIV Object (for Background) attributes */
+      div.years_buttons div {
+        background: black;
+		font-family: Tahoma;
+		font-size: 3;
+        padding: 3px;
+        margin: 1px;
+      }
+	  
+
+  </style>
+  <!-- END Styles Section -->
+
+  <!-- BEGIN SCRIPT Section -->
+  <script type="text/javascript">
+  
+    /* FUNCTION DRAW - this is the main function that the implements the
+	interactive data experience for the user. The first code that gets
+	execcuted is the load crisis code at the bottom of the function. */
+	
+    function draw(geo_data) {
+	
+		/* NOTE: geo_data = world_countries.json */
+	
+		/* Use STRICT Mode - no sloppy code */
+        "use strict";
+		
+		/* MARGIN, WIDTH, HEIGHT vars */
+        var margin = 75,
+            width = 1200 - margin,
+            height = 700 - margin;
+
+			
+		/* ======== Titles DIV's ===== */
+		
+		/* Use the d3 to select the body and 
+		append the TEXT Object with the given 
+		text to it */
+		
+        d3.select("body")
+          .append("h2")
+          .text("International Crises Behavior ");			
+			
+        d3.select("body")
+          .append("focus_title")
+          .text("Power Disparity: USA vs Adversaries");		
+		
+        d3.select("body")
+          .append("cw_title")
+          .text("Cold War Crisis Years: ");	
+		  
+        d3.select("body")
+          .append("cw_title_year")
+          .text(" ");			  
+	  
+        d3.select("body")
+          .append("powdis_title")
+          .text("USA Power Disparity: ");	
+
+        d3.select("body")
+          .append("powdis_result")
+          .text(" ");		  
+	  
+        d3.select("body")
+          .append("outcome_title")
+          .text("Crisis Outcome: ");	
+
+        d3.select("body")
+          .append("outcome_result")
+          .text(" ");		  
+	 
+	  
+			
+		/* ===== CREATE Master SVG OBJECT - var D3 Selection ====== */
+        var svg = d3.select("body")
+            .append("svg") /* Append SVG Object - give it following attrs */
+            .attr("width", width + margin)
+            .attr("height", height + margin)
+			.append('g') /* Append G (Group element for SVG) Object - give it following attrs */
+			.attr('class', 'map')
+			;
+							
+			
+		/* ===== BEGIN CREATE MAP CODE  ====== */	
+			
+		/* PROJECTION creation - mercator (flat earth) - scale and translate to fit screen. */	
+        var projection = d3.geo.mercator()
+                               .scale(140)
+                               .translate([width / 2, height / 1.2]);
+		
+		/* PATH creation per API of D3 GEO Projection. */
+		var path = d3.geo.path().projection(projection);
+		
+		/* Draw Map - per D3 API : Draws world map on screen using projection
+		path selection and world_countries.json data : geo_data. */
+		
+		var map = svg.selectAll('path')
+			.data(geo_data.features) /* geo_data = world_countries.json */
+			.enter()
+			.append('path')
+			.attr('d', path)
+			.style('fill', 'rgb(16,186,42)')
+			.style('stroke','black')
+			.style('stroke-width', 0.9)
+			;
+		
+		/* ===== END CREATE MAP CODE  ====== */	
+		
+			
+		/* +++++++++++ BEGIN Function plot_crisis ++++++++++++++ */	
+		/* Logic for Drawing Circles - This is a big function that governs the 
+		circle drawing behavior onto the map. */	
+		
+        function plot_crisis(data) {
+		
+			// Function get_crisis_coords
+			function get_crisis_coords(cw_year_data) {
+				var coords =  projection([+cw_year_data.long, +cw_year_data.lat]);
+				return coords;
+			}
+			
+			// Function get_center_x
+			function get_center_x(coords) {
+				var center_x = coords[0];
+				return center_x
+			}
+			
+			// Function get_center_Y	
+			function get_center_y(coords) {
+				var center_y = coords[1];
+				return center_y
+			}
+				
+			// Function get_usa_coords - this hardcodes the USA GEO Coordinates below.
+			function get_usa_coords() {
+				var coords =  projection([-102.019043, 40.010787]);
+				return coords;
+			}
+				
+			
+			/* =========== BEGIN Function Plot Conflicts =================== */
+			
+			/* This function does a LOT of things .... 
+			*/
+			
+			function plot_conflicts(year) {	   
+			
+				// Update the YEARS Title to reflect the chosen years.  
+				d3. select("cw_title_year")  
+					.text(year);	
+			
+				// Execute standard D3 Select of all the circles binding them w/the available data
+				var cw_year_data = svg.append('g')
+				   .attr("class", "bubble")
+				   .selectAll("circle")
+				   .data(data)
+				   .enter()
+				   ;
+				 
+				/* Append the RECTANGLE Marker for the USA - it's imperative to use the "cw_year_data"
+				   selection to append (or else it won't display)
+				*/				
+				
+				// Store the USA X/Y Mercator Projection Coordinated obtained from their LAT/LONG degrees.
+				var usa_center_x = get_center_x(get_usa_coords());
+				var usa_center_y = get_center_y(get_usa_coords());
+				
+				// Draw the USA Rectangle
+				var usa_marker = cw_year_data.append("rect")
+				   .attr('x', usa_center_x)
+				   .attr('y', usa_center_y)
+				   .attr('width', 10)
+				   .attr('height', 10)
+				   ;				 
+				 
+				 
+				/* Execute a FILTER for the year selected to get only the CIRCLES corresponding to the
+				   crises of that particular year. This is a SIGNIFICANT SELECTION because the FILTER 
+				   function selects only that data which corresponds to the year of the button pressed. 
+				*/
+				
+				var year_filtered_data = cw_year_data.append("circle")
+				   .filter(function(d) {return d.year == year} )
+				   .attr('cx', function(d) { return get_center_x(get_crisis_coords(d)); })
+				   .attr('cy', function(d) { return get_center_y(get_crisis_coords(d)); })
+				   .attr('r', 5)
+				   ;				   
+				   
+		
+
+				
+				// Create ARRAYS to hold important data from the FILTERED selection (barely used).
+				var countries = [];  	// Countries
+				var crisisname = []; 	// Crisisname
+				var powdis = [];		// Power Disparity
+				var powsta = [];		// Power Status of Actor
+				var southpow = [];		// Power Status of Belligerent
+				var outcom = [];		// Outcome of Conflict
+				
+				
+				/* Iterate through the array of data from the filtered selection above
+				and extract out the various DATA elements we are interested in. Store them
+				in the ARRAYS constructed above. */
+				
+				for (var i = 0; i < year_filtered_data[0].length; i += 1) {
+					  countries.push(year_filtered_data[0][i].__data__.belligerent);
+					  // crisisname.push(year_filtered_data[0][i].__data__.crisisname);
+					  // powdis.push(year_filtered_data[0][i].__data__.powdis);
+					  // powsta.push(year_filtered_data[0][i].__data__.powsta);
+					  // southpow.push(year_filtered_data[0][i].__data__.southpow);
+					  // outcom.push(year_filtered_data[0][i].__data__.outcom);
+				  }				
+				  
+			  
+			  /* Function UPDATE_COUNTRIES - Update the MAP to display the 
+			     adversary countries in one color and all of the rest in another. 
+				 Effectively - whatever the countries array (defined above) contains,
+				 shade those 'paths' a different hue. For the rest, use the default
+				 color.
+			  */	
+			  
+              function update_countries(d) {
+				  if(countries.indexOf(d.properties.name) !== -1) {
+						  return 'rgb(242,96,96)';	 // Red
+					  } else {
+						  return 'rgb(16,186,42)';   // Green
+					  }
+              } 
+			  
+			  /* Perform the actual transition of the map : Update ALL of the paths - and those 
+			     which are of interest will be updated as a different color (via update_countries),
+				 and the rest will be the default color. */
+              svg.selectAll('path')
+                 .transition()
+                 .duration(500)
+                 .style('fill', update_countries);
+			} 
+			/* =========== END Function Plot Conflicts =================== */	
+				
+				
+			/* =========== BEGIN Functions Governing BUTTON CLICKS =================== */	
+				
+			// Function Clear Circles
+			function clear_circles() {
+				  var circles = svg.selectAll('circle');
+				  circles.remove();				// Remove ALL the circles.	
+			}
+			// Function Clear Lines 
+			function clear_lines() {
+				  var lines = svg.selectAll('line');
+				  lines.remove();					
+			}
+				
+			// Function Process Click - this governs what happens when a button gets pressed.
+			function process_click(year) {
+				clear_circles();                // Clear ALL circles
+				clear_lines();					// Clear ALL lines
+				plot_conflicts(year);           // Plot the conflicts for the selected year.
+			}				
+				
+				
+				
+			/* ================ BEGIN YEARS NAV BAR CODE  ============================ */				
+			
+			// This code is meant to be executed as a natural course (top to bottom execution) of 
+			// the function plot_crisis being called, therefore it (like others) is NOT functionalized.
+			
+			/* Create the ARRAY years - holds the crisis years of the Cold War. */
+			var years = [1946, 1947, 1948, 1950, 1953, 1954, 1956, 1957, 1958, 1961, 1962, 1964, 1965, 1968, 1969, 1970, 1972, 1973, 1975, 1976, 1978, 1979, 1983, 1984, 1986, 1988, 1989, 1990];			
+
+
+					// Perform button creation - Use the HTML Class "years_buttons"
+					var buttons = d3.select("body")
+							.append("div")
+							.attr("class", "years_buttons")
+							.selectAll("div")
+							.data(years)
+							.enter()
+							.append("div")
+							.text(function(d) {
+								return d;
+							});
+
+					// Create button CLICK listener
+					buttons.on("click", function(d) {
+						d3.select(".years_buttons")
+						  .selectAll("div")
+						  .transition()
+						  .duration(100)
+						  .style("color", "yellow")
+						  .style("background", "black");
+
+					// Execute the transition of the button.
+						d3.select(this)
+						  .transition()
+						  .duration(100)
+						  .style("background", "yellow")
+						  .style("color", "black");
+
+					// Execute 'this' function when a button gets pressed 
+						process_click(d);
+						
+					});
+
+			/* ================ END YEARS NAV BAR CODE  =============================== */	
+					  
+	  	  
+		} /* +++++++++++ END Function plot_crisis ++++++++++++++ */	
+		
+		
+		
+		/* This is the first code to get executed in the function - it loads in the TAB 
+		delimited file (make SURE it's TAB delimited), and then sends that data to the 
+		function plot_crisis to begin execution. */
+		  
+		d3.tsv("usa_cold_war_powdis.tsv", 
+			function(d) {
+				return d;
+			}, plot_crisis);
+		  
+		  
+	
+	}; // END od DRAW function
+	
+	
+  </script>
+  <!-- END SCRIPT Section -->
+  
+ </head> 
+ <!-- END HEAD Section -->
+  
+  <!-- BEGIN BODY Section -->
+  <body>
+	  <script type="text/javascript">
+	  
+       /* Use D3 to load the GeoJSON WORLD MAP file : geo_data = world_countries.json,
+	   and then submit that data to the DRAW function defined above. */
+	   
+       d3.json("world_countries.json", draw); 
+	   
+      </script>
+  </body>
+  <!-- BEGIN BODY Section -->
+  
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
