@@ -3,250 +3,245 @@
 
 <!-- BEGIN HEAD Section -->
 <head>
+	<title>An Exploration of Power Difference in USA Cold War Conflicts</title>
+	<!-- Establish Base DOcument Encoding as "utf-8" -->
+	<meta charset="utf-8"> 
 
-  <!-- Establish Base DOcument Encoding as "utf-8" -->
-  <meta charset="utf-8"> 
-  
-  <!-- Load the D3 Javascript Library -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  
-  <!-- BEGIN Styles Section -->
-  <style>
+	<!-- Load the D3 Javascript Library -->
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 
-	/* Create the Circle Objects attributes */
-      circle {
-        fill: red;
-        stroke: black;
-        stroke-width: 0.8;
-        opacity: 1.0;
-      }  
-  
-	/* Create the Square Objects attributes */
-      rect {
-        fill: red;
-        stroke: black;
-        stroke-width: 0.8;
-        opacity: 1.0;
-      }   
-  
-	/* Create the Elipse Objects attributes */
-      ellipse {
-        fill: red;
-        stroke: black;
-        stroke-width: 2.0;
-        opacity: 1.0;
-      }    
-  
-  	/* Create the Line Objects attributes */
-      line {
-        fill: red;
-        stroke: black;
-        stroke-width: 1.2;
-        opacity: 1.0;
-      } 
-  
-	/* Create the H2 Object attributes */
-      h2 {
-        text-align: center;
-        color: black;
-		font-family: Tahoma;
-		font-weight: bold;
-      } 
-	  
-	/* Create the cw_title Object attributes */
-      cw_title {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        color: black;
-		font-family: Tahoma;
-		font-weight: bold;
-      }	
-	  
-	/* Create the cw_title_year Object attributes */
-      cw_title_year {
-        position: fixed;
-        top: 20px;
-        left: 205px;
-        color: red;
-		font-family: Tahoma;
-		font-weight: bold;
-      }	  
-	  
-	/* Create the focus_title Object attributes */
-      focus_title {
-        position: fixed;
-        top: 60px;
-        left: 440px;
-        color: black;
-		font-family: Tahoma;
-		font-weight: bold;
-      }	  
-	  
-	/* Create the powdis_title Object attributes */
-      powdis_title {
-        position: fixed;
-        top: 460px;
-        left: 20px;
-        color: black;
-		font-family: Tahoma;
-		font-weight: bold;
-      }	
-	  
-	/* Create the powdis_result Object attributes */
-      powdis_result {
-        position: fixed;
-        top: 460px;
-        left: 210px;
-        color: red;
-		font-family: Tahoma;
-		font-weight: bold;
-      }		  
-	  
-	/* Create the outcome_title Object attributes */
-      outcome_title {
-        position: fixed;
-        top: 100px;
-        left: 450px;
-        color: black;
-		font-family: Tahoma;
-		font-weight: bold;
-		opacity: 1.0;
-      }		  
+	<!-- BEGIN Styles Section -->
+	<style>
+
+		/* Create the Circle Objects attributes */
+		circle {
+			fill: rgb(255,0,0);
+			stroke: black;
+			stroke-width: 0.8;
+			opacity: 1.0;
+			}
+
+		/* Create the Square Objects attributes */
+		rect {
+			fill: rgb(255,0,0);
+			stroke: black;
+			stroke-width: 0.8;
+			opacity: 1.0;
+			}
+
+		/* Create the Elipse Objects attributes */
+		ellipse {
+			fill: rgb(255,0,0);
+			stroke: black;
+			stroke-width: 2.0;
+			opacity: 1.0;
+			}
+
+		/* Create the Line Objects attributes */
+		line {
+			fill: rgb(255,0,0);
+			stroke: black;
+			stroke-width: 1.2;
+			opacity: 1.0;
+			}
+
+		/* Create the H2 Object attributes */
+		h2 {
+			text-align: center;
+			color: black;
+			font-family: Tahoma;
+			font-weight: bold;
+			} 
+          
+		/* Create the cw_title Object attributes */
+		cw_title {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			color: black;
+			font-family: Tahoma;
+			font-weight: bold;
+			}
+
+		/* Create the cw_title_year Object attributes */
+		cw_title_year {
+			position: fixed;
+			top: 20px;
+			left: 205px;
+		color: red;
+			font-family: Tahoma;
+			font-weight: bold;
+			}
+          
+		/* Create the focus_title Object attributes */
+		focus_title {
+			position: fixed;
+			top: 60px;
+			left: 440px;
+			color: black;
+			font-family: Tahoma;
+			font-weight: bold;
+		} 
+
+		/* Create the powdis_title Object attributes */
+		powdis_title {
+			position: fixed;
+			top: 460px;
+			left: 20px;
+			color: black;
+			font-family: Tahoma;
+			font-weight: bold;
+			}
+          
+        /* Create the powdis_result Object attributes */
+		powdis_result {
+			position: fixed;
+			top: 460px;
+			left: 210px;
+			color: red;
+			font-family: Tahoma;
+			font-weight: bold;
+		}
+
+		/* Create the outcome_title Object attributes */
+		outcome_title {
+			position: fixed;
+			top: 100px;
+			left: 450px;
+			color: black;
+			font-family: Tahoma;
+			font-weight: bold;
+			opacity: 1.0;
+			}
 	
-	/* Create the outcome_result Object attributes */
-      outcome_result {
-        position: fixed;
-        top: 100px;
-        left: 585px;
-        color: red;
-		font-family: Tahoma;
-		font-weight: bold;
-		opacity: 1.0;
-      }			
-	
-	/* Create the DIV Container Object (for Buttons) attributes */
-      div.years_buttons {
-        position: fixed;
-        top: 50px;
-        left: 15px;
-		border: 2px solid red;
+		/* Create the outcome_result Object attributes */
+		outcome_result {
+			position: fixed;
+			top: 100px;
+			left: 585px;
+			color: red;
+			font-family: Tahoma;
+			font-weight: bold;
+			opacity: 1.0;
+			}
+
+		/* Create the DIV Container Object (for Buttons) attributes */
+		div.years_buttons {
+			position: fixed;
+			top: 50px;
+			left: 15px;
+			border: 2px solid red;
+			background: black;
+			color: yellow;
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			column-count: 2;
+			}
+
+		/* Create the DIV Object (for Background) attributes */
+		div.years_buttons div {
 		background: black;
-		color: yellow;
-		-moz-column-count: 2;
-		-webkit-column-count: 2;
-		column-count: 2;
-      }
-	  
-	/* Create the DIV Object (for Background) attributes */
-      div.years_buttons div {
-        background: black;
 		font-family: Tahoma;
 		font-size: 3;
-        padding: 3px;
-        margin: 1px;
-      }
-	  
+		padding: 3px;
+		margin: 1px;
+		}
 
-  </style>
-  <!-- END Styles Section -->
 
-  <!-- BEGIN SCRIPT Section -->
-  <script type="text/javascript">
-  
-    /* FUNCTION DRAW - this is the main function that the implements the
+	</style>
+	<!-- END Styles Section -->
+
+	<!-- BEGIN SCRIPT Section -->
+	<script type="text/javascript">
+
+	/* FUNCTION DRAW - this is the main function that the implements the
 	interactive data experience for the user. The first code that gets
 	execcuted is the load crisis code at the bottom of the function. */
 	
-    function draw(geo_data) {
-	
+	function draw(geo_data) {
 		/* NOTE: geo_data = world_countries.json */
-	
+		
 		/* Use STRICT Mode - no sloppy code */
-        "use strict";
+		"use strict";
 		
 		/* MARGIN, WIDTH, HEIGHT vars */
-        var margin = 75,
-            width = 1200 - margin,
-            height = 700 - margin;
+		var margin = 75,
+			width = 1200 - margin,
+			height = 700 - margin;
 
-			
 		/* ======== Titles DIV's ===== */
-		
 		/* Use the d3 to select the body and 
 		append the TEXT Object with the given 
 		text to it */
-		
-        d3.select("body")
-          .append("h2")
-          .text("International Crises Behavior ");			
-			
-        d3.select("body")
-          .append("focus_title")
-          .text("Power Disparity: USA vs Adversaries");		
-		
-        d3.select("body")
-          .append("cw_title")
-          .text("Cold War Crisis Years: ");	
-		  
-        d3.select("body")
-          .append("cw_title_year")
-          .text(" ");			  
-	  
-        d3.select("body")
-          .append("powdis_title")
-          .text("USA Power Disparity: ");	
 
-        d3.select("body")
-          .append("powdis_result")
-          .text(" ");		  
-	  
-        d3.select("body")
-          .append("outcome_title")
-          .text("Crisis Outcome: ");	
+		d3.select("body")
+			.append("h2")
+			.text("International Crises Behavior ");
 
-        d3.select("body")
-          .append("outcome_result")
-          .text(" ");		  
+		d3.select("body")
+			.append("focus_title")
+			.text("Power Disparity: USA vs Adversaries");		
+
+		d3.select("body")
+			.append("cw_title")
+			.text("Cold War Crisis Years: ");	
+
+		d3.select("body")
+			.append("cw_title_year")
+			.text(" ");			  
+
+		d3.select("body")
+			.append("powdis_title")
+			.text("USA Power Disparity: ");	
+
+		d3.select("body")
+			.append("powdis_result")
+			.text(" ");		  
+
+		d3.select("body")
+			.append("outcome_title")
+			.text("Crisis Outcome: ");	
+
+		d3.select("body")
+			.append("outcome_result")
+			.text(" ");		  
 	  
 		// Here we use an HTML DIV since we need to do formatting.
 		var powdis_descr = d3.select("body").append("div")   
 			.style("position", "absolute")
 			.style("text-align", "left")
 			.style("width", "350px")
-			.style("height", "9.0em")
+			.style("height", "8.5em")
 			.style("font", ".8em tahoma")
 			.style("color","yellow")
 			.style("background", "black")
 			.style("border-radius", "8px")
 			.style("border", "solid 2px red")
 			.style("padding", "10px")
-			.style("top",  80 + "px")
+			.style("top",  85 + "px")
 			.style("left", 700 + "px")
 			.style("opacity", 1)
 			;			
 
 		// The TEXT for the HTML DIV.
-		powdis_descr.html("Power Disparity: A power score was determined for the crisis actor (eg. USA) and its principal adversary on the basis of the total of six separate scores measuring (1) size of population, (2) GNP, (3) territorial size, (4) alliance capability, (5) military expenditure, and (6) nuclear capability. MOUSEOVER the red dot endpoint markers for power disparity information and crisis outcome.");	
-	  
-			
+		powdis_descr.html("Power Disparity: A power score was determined for the crisis actor (eg. USA) and its principal adversary on the basis of the total of six separate scores measuring (1) size of population, (2) GNP, (3) territorial size, (4) alliance capability, (5) military expenditure, and (6) nuclear capability. <font color=white>MOUSEOVER the red dot endpoint markers for power disparity information and crisis outcome.</font>");	
+
 		/* ===== CREATE Master SVG OBJECT - var D3 Selection ====== */
-        var svg = d3.select("body")
-            .append("svg") /* Append SVG Object - give it following attrs */
-            .attr("width", width + margin)
-            .attr("height", height + margin)
+		var svg = d3.select("body")
+			.append("svg") /* Append SVG Object - give it following attrs */
+			.attr("width", width + margin)
+			.attr("height", height + margin)
 			.append('g') /* Append G (Group element for SVG) Object - give it following attrs */
 			.attr('class', 'map')
 			;
-							
-			
+
 		/* ===== BEGIN CREATE MAP CODE  ====== */	
-			
+
 		/* PROJECTION creation - mercator (flat earth) - scale and translate to fit screen. */	
-        var projection = d3.geo.mercator()
-                               .scale(140)
-                               .translate([width / 2, height / 1.2]);
-		
+		var projection = d3.geo.mercator()
+			.scale(140)
+			.translate([width / 2, height / 1.2]);
+
 		/* PATH creation per API of D3 GEO Projection. */
 		var path = d3.geo.path().projection(projection);
 		
@@ -258,18 +253,17 @@
 			.enter()
 			.append('path')
 			.attr('d', path)
-			.style('fill', 'rgb(16,186,42)')
+			.style('fill', 'rgb(138,204,145)')
 			.style('stroke','black')
 			.style('stroke-width', 0.9)
 			;
 		
 		/* ===== END CREATE MAP CODE  ====== */	
-		
-			
+
 		/* +++++++++++ BEGIN Function plot_crisis ++++++++++++++ */	
 		/* Logic for Drawing Circles - This is a big function that governs the 
 		circle drawing behavior onto the map. */	
-		
+
         function plot_crisis(data) {
 		
 			// Function get_crisis_coords
@@ -295,7 +289,7 @@
 				var coords =  projection([-102.019043, 40.010787]);
 				return coords;
 			}
-				
+
 			
 			/* =========== BEGIN Function Plot Conflicts =================== */
 			
@@ -383,12 +377,13 @@
 					
 
 				// FUNCTION show_powdis_marker (power disparity)
+				// ** Corrected for Radius sizing bug - using SQRT() **
 				function show_powdis_marker(d) {
 					 var usa_powdis_marker = cw_year_data.append("ellipse")
 						.attr("cx", 150)
 						.attr("cy", 550)
-						.attr("rx", (d.powdis < 0) ? 3 : d.powdis * 2 )
-						.attr("ry", (d.powdis < 0) ? 3 : d.powdis * 2 )
+						.attr("rx", (d.powdis < 0) ? 3 : Math.sqrt(d.powdis) * 10 )
+						.attr("ry", (d.powdis < 0) ? 3 : Math.sqrt(d.powdis) * 10 )
 						;
 				}
 				
@@ -410,15 +405,15 @@
 						
 					// Update the POWDIS Score
 					d3.select("powdis_result")
-					  .text(d.powdis)					  
-					  .style("color","red")
-					  .style("font-weight","bold");	
+						.text(d.powdis)					  
+						.style("color","red")
+						.style("font-weight","bold");	
 
 					// Update the Outcome Result
 					d3.select("outcome_result")
-					  .text(crisis_outcome(d.outcom) )
-					  .style("color","red")
-					  .style("font-weight","bold");					  
+						.text(crisis_outcome(d.outcom) )
+						.style("color","red")
+						.style("font-weight","bold");					  
 						
 					// Show the Powdis Marker (ellipse)
 					show_powdis_marker(d);	
@@ -431,17 +426,17 @@
 					
 					// HIDE Conflict Stats Info Box
 				 	crisis_stats_div.style("left", 600 + "px")
-					   .style("top",  650 + "px")
-					   .style("opacity", 0);      // Erase - set Opacity to 0 and move to BRHC.
-					   
+						.style("top",  650 + "px")
+						.style("opacity", 0);      // Erase - set Opacity to 0 and move to BRHC.
+					 
 					// Update the POWDIS Score
 					d3.select("powdis_result")
-					  .text(" ");
-					  
+						.text(" ");
+					
 					// Update the OUTCOME Results
 					d3.select("outcome_result")
-					  .text(" ");					  
-					   
+						.text(" ");
+					
 					// Clear PowDis (ellipse) Artifacts
 					clear_ellipses();
 					   
@@ -449,9 +444,9 @@
 				 
 				
 				/* Define an HTML Div element (for mouseovers) that we can position absolutely 
-				   using the d3.event.pageX and d3.event.pageY. This is used on mouseovers to  
-				   display data. */
-				   
+					using the d3.event.pageX and d3.event.pageY. This is used on mouseovers to  
+					display data. */
+				
 				var crisis_stats_div = d3.select("body").append("div")   
 					.style("position", "absolute")
 					.style("text-align", "left")
@@ -471,43 +466,40 @@
 					.on("mouseover", mouseover)
 					.on("mouseout",  mouseout);				
 
-				
 				// Create ARRAYS to hold important data from the FILTERED selection (barely used).
 				var countries = [];  	// Countries
-				
 				
 				/* Iterate through the array of data from the filtered selection above
 				and extract out the various DATA elements we are interested in. Store them
 				in the ARRAYS constructed above. */
 				
 				for (var i = 0; i < year_filtered_data[0].length; i += 1) {
-					  countries.push(year_filtered_data[0][i].__data__.belligerent);
-				  }				
-				  
-			  
-			  /* Function UPDATE_COUNTRIES - Update the MAP to display the 
-			     adversary countries in one color and all of the rest in another. 
+						countries.push(year_filtered_data[0][i].__data__.belligerent);
+					}				
+			
+				/* Function UPDATE_COUNTRIES - Update the MAP to display the 
+				adversary countries in one color and all of the rest in another. 
 				 Effectively - whatever the countries array (defined above) contains,
 				 shade those 'paths' a different hue. For the rest, use the default
 				 color.
-			  */	
-			  
-              function update_countries(d) {
+				*/
+			
+				function update_countries(d) {
 				  if(countries.indexOf(d.properties.name) !== -1) {
-						  return 'rgb(242,96,96)';	 // Red
-					  } else {
-						  return 'rgb(16,186,42)';   // Green
-					  }
-              } 
+							return 'rgb(242,96,96)';	 // Red
+						} else {
+							return 'rgb(138,204,145)';   // Green
+						}
+				}
 			  
 			  /* Perform the actual transition of the map : Update ALL of the paths - and those 
-			     which are of interest will be updated as a different color (via update_countries),
-				 and the rest will be the default color. */
+				which are of interest will be updated as a different color (via update_countries),
+				and the rest will be the default color. */
 				 
-              svg.selectAll('path')
-                 .transition()
-                 .duration(500)
-                 .style('fill', update_countries);
+				svg.selectAll('path')
+					.transition()
+					.duration(500)
+					.style('fill', update_countries);
 			} 
 			/* =========== END Function Plot Conflicts =================== */	
 				
@@ -572,9 +564,8 @@
 
 					// Execute 'this' function when a button gets pressed 
 						process_click(d);
-						
-					});
 
+					});
 			/* ================ END YEARS NAV BAR CODE  =============================== */	
 					  
 	  	  
@@ -590,31 +581,30 @@
 			function(d) {
 				return d;
 			}, plot_crisis);
-		  
-		  
+
 	
 	}; // END od DRAW function
 	
 	
-  </script>
-  <!-- END SCRIPT Section -->
-  
- </head> 
- <!-- END HEAD Section -->
-  
-  <!-- BEGIN BODY Section -->
-  <body>
-	  <script type="text/javascript">
+	</script>
+	<!-- END SCRIPT Section -->
+
+</head> 
+<!-- END HEAD Section -->
+
+<!-- BEGIN BODY Section -->
+<body>
+	<script type="text/javascript">
 	  
-       /* Use D3 to load the GeoJSON WORLD MAP file : geo_data = world_countries.json,
-	   and then submit that data to the DRAW function defined above. */
-	   
-       d3.json("world_countries.json", draw); 
-	   
-      </script>
-  </body>
-  <!-- BEGIN BODY Section -->
-  
+		/* Use D3 to load the GeoJSON WORLD MAP file : geo_data = world_countries.json,
+		and then submit that data to the DRAW function defined above. */
+
+		d3.json("world_countries.json", draw); 
+
+	</script>
+</body>
+<!-- BEGIN BODY Section -->
+
 </html>
 
 
